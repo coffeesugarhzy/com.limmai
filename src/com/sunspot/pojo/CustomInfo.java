@@ -44,7 +44,6 @@ public class CustomInfo implements java.io.Serializable
     {
     }
 
-    /** full constructor */
     /** @author scatlet 2015-11-19*/
     public CustomInfo(String customId, String customName, Integer customSex,
 			String customHead, double balance, double integral,

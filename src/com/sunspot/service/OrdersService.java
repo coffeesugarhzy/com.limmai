@@ -244,4 +244,5 @@ public interface OrdersService
      * @return
      */
     List<Integer> goodsStatusInOrders(List<OrdersIndexExt> list);
+
 }

@@ -195,7 +195,6 @@ public class LoginControl
             runLog.info("login failed,ERRORCODE:" + Constants.USER_OR_PASS_NULL);
             return RE_LOGIN_PAGE;
         }
-        System.out.println("start");
         // 验证用户信息
         userInfo = userInfoService.checkUserLogin(userName.trim(),
                 password.trim(), loginType);

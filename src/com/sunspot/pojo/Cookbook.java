@@ -81,7 +81,6 @@ public class Cookbook implements java.io.Serializable
 		this.cookbookType = cookbookType;
 	}
 
-	// Property accessors
     @GenericGenerator(name = "generator", strategy = "uuid2")
     @Id
     @GeneratedValue(generator = "generator")
@@ -316,16 +315,16 @@ public class Cookbook implements java.io.Serializable
         this.orderNum = orderNum;
     }
     
-	@Column(name="IS_SHEL")
-    public Integer getIsShel() {
+    @Column(name = "IS_SHEL")
+	public Integer getIsShel() {
 		return isShel;
 	}
 
 	public void setIsShel(Integer isShel) {
 		this.isShel = isShel;
 	}
-
-	@Column(name = "cookbook_type", length = 36)
+	
+    @Column(name = "cookbook_type", length = 36)
 	public String getCookbookType() {
 		return cookbookType;
 	}

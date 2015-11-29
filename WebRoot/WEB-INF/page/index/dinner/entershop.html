@@ -27,7 +27,10 @@
 			<a href="javascript:window.history.back();" class="go_back"> <img
 				src="/dist/images/go_back.png" alt="" />
 			</a>
+<<<<<<< HEAD
 <#if status!=0><!-- 商店没有被屏蔽 -->
+=======
+>>>>>>> origin/master
 			<div class="title">
 				<span>${shop.shopName}</span> 
 			    <#if Request.customLike ??>
@@ -47,11 +50,13 @@
 				<a href="/index/dinner/shopdetail.do?shopId=${shop.shopId}"><li>简介</li></a>
 			</ul>
 		</div> -->
-		
+		<!-- 商店的地址 -->
 		<div class="introduce clearFix" style="border-top-style:none;margin-top: 5px;margin-bottom: 5px !important;padding: 10px;height: auto;padding-top: 8px;line-height: 1.4;padding-bottom: 8px;padding-left: 30px;font-size: 14px;color: #666;background-image: url(&quot;/dist/img/icon/locatioin_point.png&quot;);background-repeat: no-repeat;background-position: 0;">	
-		 <a href="/index/near/map.do?shopId=${Request.shop.shopId}"><i
-						class="a"></i>${Request.shop.address}<span class="fr arrow">›</span></a> 
+			 <a href="/index/near/map.do?shopId=${Request.shop.shopId}">
+			 	<i class="a"></i>${Request.shop.address}<span class="fr arrow">›</span>
+			 </a> 
 		</div>
+		<!-- 商品的分类和搜索框 -->
 		<div class="introduce clearFix" style="border-top-style:none">
 			<div class="search_shop">
 			    <select name="cooktype" id="cooktype" style="float:left;width:40%;padding:8px;">
@@ -78,69 +83,70 @@
 			</div>
 		</div>
 		
-	 
-		
+		<!-- 开始商品的展示 -->
 		<div class="contents">
-		 
-		<#if cookbooks?? && 0<cookbooks?size>
-		<div class="foods-list">
-            <ul>
-                <#list cookbooks as cks>
-				<#assign saleType = "-1">
-		        <#assign salePrice = "0">
-		        <#assign suggest = "">
-				<#if cks.cookType ?? && 1==cks.cookType>
-		           <#assign suggest = "${cks.suggest}">
-		        </#if>
-		        <#if cks.isSale?? && 0==cks.isSale && weekDay==cks.saleDay>
-		           <#assign saleType = "0">
-		           <#assign salePrice = "${cks.salePrice?string('######################.##')}">
-		        <#elseif cks.isDis?? && 0==cks.isDis && cks.beginTime?time("HH:mm") <= curTime?time("HH:mm") && curTime?time("HH:mm") < cks.endTime?time("HH:mm") && 0 < cks.disNum> 
-		           <#assign saleType = "1">
-		           <#assign salePrice = "${cks.disPrice?string('######################.##')}"> 
-			    </#if>
-                <li class="clearFix" >
-                    <img onclick="javascript:window.location.href='/index/dinner/shopcbdetail.do?cookbooksId=${cks.cookbooksId}'" class="fl" src="${cks.logo}" width="70" height="70" alt="" >
-                    <p class="name">${cks.cookName}</p>
-                    <#if 0==cks.cookType>
-				      <p class="intro">类型：${cks.typeName}</p>
-				    <#else>
-				      <p class="intro">建议就餐人数：${cks.suggest}</p>
-				     </#if>
-                    <p class="price">
-                        <#if 0 <= saleType?number>
-						    <span class="new-price">¥${salePrice}</span>&nbsp;<span class="last-price">¥${cks.price}</span>
-						<#else>
-						    <span class="new-price">¥${cks.price}</span>
-						</#if>
-                    </p>
-                    <a class="sub" ontouchend="lessFunc('${cks.cookbooksId}');"></a> <span
-						class="food-num" id="num${cks.cookbooksId}">0</span> <a
-						class="add" ontouchend="plusFunc('${cks.cookbooksId}','${cks.cookName}','${cks.logo}', '${cks.ofShopId}', '${cks.shopName}', '${cks.price?string('######################.##')}', '${saleType}','${salePrice}', '${suggest}')"></a>
-				</li>
-                </#list>
-                </ul>
-        </div>
-        <#else>
-        没有数据
-        </#if>
-        <div class="shade none"></div>
-		<!-- <div class="shopping-cart">
-			<div class="food-info fl">
-				<a class="cart-ico" href="javascript:void(0);"><span id="num" class="_num">0</span></a>
-				<span class="info">
-					<p class="hint">30元起送</p>
-					<p class="money">¥0.00</p>
-				</span>
+			<#if cookbooks?? && 0<cookbooks?size>
+				<div class="foods-list">
+		            <ul>
+		                <#list cookbooks as cks>
+							<#assign saleType = "-1">
+					        <#assign salePrice = "0">
+					        <#assign suggest = "">
+							<#if cks.cookType ?? && 1==cks.cookType>
+					           <#assign suggest = "${cks.suggest}">
+					        </#if>
+					        
+					        <#if cks.isSale?? && 0==cks.isSale && weekDay==cks.saleDay>
+					           <#assign saleType = "0">
+					           <#assign salePrice = "${cks.salePrice?string('######################.##')}">
+					        <#elseif cks.isDis?? && 0==cks.isDis && cks.beginTime?time("HH:mm") <= curTime?time("HH:mm") && curTime?time("HH:mm") < cks.endTime?time("HH:mm") && 0 < cks.disNum> 
+					           <#assign saleType = "1">
+					           <#assign salePrice = "${cks.disPrice?string('######################.##')}"> 
+						    </#if>
+						    
+						    <!-- List商品的链接 -->
+			                <li class="clearFix" >
+			                    <img onclick="javascript:window.location.href='/index/dinner/shopcbdetail.do?cookbooksId=${cks.cookbooksId}'" class="fl" src="${cks.logo}" width="70" height="70" alt="" >
+			                    <p class="name">${cks.cookName}</p>
+			                    <#if 0==cks.cookType>
+							      <p class="intro">类型：${cks.typeName}</p>
+							    <#else>
+							      <p class="intro">建议就餐人数：${cks.suggest}</p>
+							     </#if>
+			                    <p class="price">
+			                        <#if 0 <= saleType?number>
+									    <span class="new-price">¥${salePrice}</span>&nbsp;<span class="last-price">¥${cks.price}</span>
+									<#else>
+									    <span class="new-price">¥${cks.price}</span>
+									</#if>
+			                    </p>
+			                <a class="sub" ontouchend="lessFunc('${cks.cookbooksId}');"></a>
+			                    	<span class="food-num" id="num${cks.cookbooksId}">0</span>
+							<a class="add" ontouchend="plusFunc('${cks.cookbooksId}','${cks.cookName}','${cks.logo}', '${cks.ofShopId}', '${cks.shopName}', '${cks.price?string('######################.##')}', '${saleType}','${salePrice}', '${suggest}')"></a>
+							</li>
+			            </#list>
+		            </ul>
+		        </div>
+	        <#else>
+	        	没有数据
+	        </#if>
+	        <div class="shade none"></div>
+			<!-- <div class="shopping-cart">
+				<div class="food-info fl">
+					<a class="cart-ico" href="javascript:void(0);"><span id="num" class="_num">0</span></a>
+					<span class="info">
+						<p class="hint">30元起送</p>
+						<p class="money">¥0.00</p>
+					</span>
+				</div>
+				<div class="submit fr" >
+					<a href="javascript:toConfirm();">&nbsp;选好了</a>
+				</div>
 			</div>
-			<div class="submit fr" >
-				<a href="javascript:toConfirm();">&nbsp;选好了</a>
-			</div>
-		</div>
-		<div class="food-choice-list">
-			<ul id="cart">
-			</ul>
-		</div> -->
+			<div class="food-choice-list">
+				<ul id="cart">
+				</ul>
+			</div> -->
 	</div>
 		
 		<!--限时抢购-->
@@ -222,21 +228,25 @@
 	</div>
 	<div class="shade none"></div>
 	<div class="shopping-cart">
-			<div class="food-info fl">
-				<a class="cart-ico" href="javascript:void(0);"><span id="num"
-					class="num">0</span></a> <span class="info">
-					<p class="hint">30元起送</p>
-					<p class="money">¥0.00</p>
-				</span>
-			</div>
-			<div class="submit fr">
-				<!-- 前台显示店家状态，如果休息状态不允许下单 -->
-				<#if shop.online == 1>
- 				<a href="javascript:toConfirm();">&nbsp;选好了</a>
-				<#else>
-				<p style="background-color: #FFF8DC;">店家休息中..</p>
-				</#if>
-			</div>
+		<div class="food-info fl">
+			<a class="cart-ico" href="javascript:void(0);">
+				<span id="num" class="num">0</span>
+			</a> 
+			<span class="info">
+				<p class="hint">30元起送</p>
+				<p class="money">¥0.00</p>
+			</span>
+		</div>
+		<div class="submit fr">
+			<!-- 前台显示店家状态，如果休息状态不允许下单 -->
+			<#if shop.online?? >
+			<#if shop.online == 1>
+ 			<a href="javascript:toConfirm();">&nbsp;选好了</a>
+			<#else>
+			<p style="background-color: #FFF8DC;">店家休息中..</p>
+			</#if>
+			</#if>
+		</div>
 	</div>
 	<div class="food-choice-list">
 		<ul id="cart"></ul>

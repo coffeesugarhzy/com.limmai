@@ -58,7 +58,6 @@
 	ALTER TABLE farm_produce ADD IS_SHEL INTEGER(2) DEFAULT 0;
 	
 	
-	
 	黄祖源
 	
 	黄祖源 任务日志：
@@ -67,4 +66,4 @@
 	2、com.sunspot.service.impl.OrdersServiceImpl
 			添加自动收货方法autoReceiveGoods(String, String);
 			
-			
+

@@ -66,6 +66,7 @@ function ajaxFunc() {
                     
                     isShel=content[i].isShels;
 
+
                     if (0 == content[i].isSale && weekDay == content[i].saleDay) {
                         saleType = 0;
                         saleprice = content[i].salePrice;

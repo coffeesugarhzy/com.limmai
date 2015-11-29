@@ -53,6 +53,9 @@ public class ShopServiceImpl implements ShopService
     @Autowired
     private BaseDao baseDao;
 
+    Timer timer = new Timer();
+    
+
     /**
      * 分页查询
      * 
@@ -408,32 +411,45 @@ public class ShopServiceImpl implements ShopService
 	/**
 	 * 设置店铺自动关店时间
 	 */
-	public void setCloseTime(final Shop shop) {
+	public void setCloseTime(final Shop shop,final int isOpen) {
 				//Shop shop = new Shop();
 				Calendar calendar = Calendar.getInstance();  
 			    calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(shop.getCloseTime().substring(0, 2))); // 控制时  
 			    calendar.set(Calendar.MINUTE, Integer.parseInt(shop.getCloseTime().substring(3, 5))); // 控制分  
 			    calendar.set(Calendar.SECOND, 0); // 控制秒  
-			    Date time = calendar.getTime(); //  
-			    try{
-			    	baseDao.update("update shop set close_time=? where shop_id=?",
+			    Date time = calendar.getTime(); //
+			    
+			    
+			    if(isOpen == 0){
+			    	timer = new Timer();
+			    	try{
+			    		baseDao.update("update shop set close_time=? where shop_id=?",
+			    				new Object[]
+			    						{shop.getCloseTime(),shop.getShopId()});
+			    	}catch(Exception e){
+			    		
+			    		
+			    	}
+			    }	
+			    TimerTask timerTask = new TimerTask() {
+			    	public void run() {
+			    		if(isOpen == 0){
+			    		try{
+			    			baseDao.update(
+			    					"update shop set online=0 where shop_id=?",
 			    					new Object[]
-			    							{shop.getCloseTime(),shop.getShopId()});
-			    }catch(Exception e){
-			    	
+			    							{shop.getShopId()});
+			    		}catch (Exception e){
+			    		}
+			    		}else{
+			    			System.out.println("什么都没干");
+			    		}
+			    	}
+			    };
+			    if(isOpen == 0){
+			    timer.schedule(timerTask, time, 1000 * 60 * 60 * 24);}// 24小时后继续执行
+			    if(isOpen == 1){
+			    	timer.cancel();  
 			    }
-			    Timer timer = new Timer(); 
-			    timer.schedule(new TimerTask() {  
-			        public void run() {  
-			            try{
-			            	baseDao.update(
-				                    "update shop set online=0 where shop_id=?",
-				                    new Object[]
-				                    {shop.getShopId()});
-			            }catch (Exception e){
-			            	
-			            }
-			        }  
-			    }, time, 1000 * 60 * 60 * 24);// 24小时后继续执行  
 			} 
 }

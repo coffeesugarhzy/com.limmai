@@ -51,4 +51,5 @@ public interface NearService
      * @param shopExt
      */
     public boolean getShopStatus(String shopId);
+
 }

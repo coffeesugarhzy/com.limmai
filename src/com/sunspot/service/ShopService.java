@@ -127,6 +127,7 @@ public interface ShopService
     /**
      * 设置店铺自动关店时间
      * @param shop
+     * @param isOpen 
      */
-	void setCloseTime(Shop shop);
+	void setCloseTime(Shop shop, int isOpen);
 }

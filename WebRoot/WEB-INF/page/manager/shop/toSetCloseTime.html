@@ -18,14 +18,22 @@
 					<legend>设置时间 </legend>
 					<table width="100%" class="table_form">
 						<tbody>
-							
 							<tr>
+								<td width="120">是否开启该功能:</td>
+								<td>
+									<input type="radio" onclick="toSetVisible()" value="0" id=isOpen name=isOpen checked=true />&nbsp;<nobr style="color:red">开启</nobr>&nbsp;
+									<input type="radio" onclick="toSetHidden()"  value="1" id=isClose name=isOpen /><nobr style="color:red">关闭</nobr>
+								</td>
+							</tr>
+							
+							<tr id="setHidden">
 								<td width="120">每天自动关店时间：</td>
-								<input type=hidden id=shopId name=shopId value=${shop.shopId}>
+									<input type=hidden id=shopId name=shopId value=${shop.shopId}>
 								<td><input type="text" id=closeTime name=closeTime
 									value="${(shop.closeTime)!''}" style="width: 80px;"
 									class="date input-text" readOnly="true"
 									onClick="WdatePicker({dateFmt:'HH:mm'})"/>
+								</td>
 							</tr>
 						</tbody>
 					</table>
@@ -50,8 +58,6 @@
 			src="/dist/My97DatePicker/WdatePicker.js"></script>
 
 		<script>
-			
-
 			var submitnum = 0;
 			function validate() {
 				if (0 != submitnum) {
@@ -62,6 +68,18 @@
 					submitnum++;
 					document.getElementById("myform").submit();
 				}
+			}
+		</script>
+		<script type="text/javascript">
+			var setHidden = document.getElementById("setHidden");
+			function toSetHidden(){
+				setHidden.style.visibility="hidden";
+			}
+		</script>
+		<script type="text/javascript">
+			var setHidden = document.getElementById("setHidden");
+			function toSetVisible(){
+				setHidden.style.visibility="visible"
 			}
 		</script>
 	</div>

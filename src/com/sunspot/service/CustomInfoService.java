@@ -44,4 +44,5 @@ public interface CustomInfoService
 	 * 2015-11-19
 	 */
 	int statusModify(String id,int status);
+
 }

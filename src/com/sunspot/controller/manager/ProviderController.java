@@ -1,6 +1,5 @@
 package com.sunspot.controller.manager;
 
-
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -73,7 +72,6 @@ public class ProviderController
     @RequestMapping("list")
     public void list()
     {
-    	System.out.println("start!");
     }
 
     /**
@@ -443,4 +441,5 @@ public class ProviderController
     	return "rsp/submitrsp";
 
     }
+
 }

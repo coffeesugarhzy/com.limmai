@@ -97,7 +97,7 @@ public class Fresh implements java.io.Serializable
         return this.freshId;
     }
 
-	public void setFreshId(String freshId)
+    public void setFreshId(String freshId)
     {
         this.freshId = freshId;
     }

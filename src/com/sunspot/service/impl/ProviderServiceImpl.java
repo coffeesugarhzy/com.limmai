@@ -49,7 +49,9 @@ public class ProviderServiceImpl implements ProviderService
             int total = baseDao.queryForIntPage("select count(*) from user_info where user_type=1 and user_name like ?" , new Object[]{Utils.getKeyword(Utils.transformChar(keyword)) });
             list.setCount(total); 
             
+
             return baseDao.query("select user_id, logo, remark,login_name, telphone, user_name,status from user_info where user_type=1 and user_name like ? limit ?,?",
+
                     new Object[]
                     { Utils.getKeyword(Utils.transformChar(keyword)) , list.getCurNum(), list.getRows() }, UserInfo.class);
         }else{
@@ -236,4 +238,5 @@ public class ProviderServiceImpl implements ProviderService
     		return 0;
     	}
     }
+
 }

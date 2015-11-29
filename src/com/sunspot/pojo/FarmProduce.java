@@ -82,7 +82,6 @@ public class FarmProduce implements java.io.Serializable
 		this.isShel = isShel;
 	}
 
-    
     // Property accessors
     @GenericGenerator(name = "generator", strategy = "uuid2")
     @Id
@@ -337,4 +336,5 @@ public class FarmProduce implements java.io.Serializable
    	public void setIsShel(Integer isShel) {
    		this.isShel = isShel;
    	}
+
 }

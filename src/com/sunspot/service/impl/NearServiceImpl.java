@@ -31,7 +31,6 @@ public class NearServiceImpl implements NearService
      */
     @Resource
     private BaseDao baseDao;
-    
 
     /**
      * 店铺所有信息,距离(distance)

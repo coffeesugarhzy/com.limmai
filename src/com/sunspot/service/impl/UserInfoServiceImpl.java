@@ -69,6 +69,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 			    String userType = map.get("user_type").toString() ;
 			    String userName = map.get("user_name")==null?"":map.get("user_name").toString() ;
 			    int status=Integer.parseInt(map.get("status")+"");
+
 			    String ofRoleId = map.get("role_id").toString() ; 
 			    
 			    UserRole userRole = new UserRole() ; 
@@ -81,6 +82,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 			    userInfo.setUserId(userId) ; 
 			    userInfo.setStatus(status);
 			    userInfo.setUserRole(userRole) ; 
+
 	            return userInfo ; 
 	            
 			}else{ 

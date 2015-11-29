@@ -289,12 +289,12 @@ public class ShopController
          * @param modelMap
          */
        @RequestMapping(value = "setCloseTime",method = RequestMethod.POST)
-        public String SetCloseTime(Shop shop, ModelMap modelMap)
-        {
+        public String SetCloseTime(Shop shop, ModelMap modelMap,int isOpen){
         	int resultCode = 1;
             try
             {
-                shopService.setCloseTime(shop);
+                shopService.setCloseTime(shop,isOpen);
+
             }
             catch (Exception e)
             {

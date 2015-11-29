@@ -168,6 +168,7 @@ public class DinnerIndexController
     			isShels.add(1);
     	}
         request.setAttribute("isShels",isShels);
+        cookbookService.queryPage(list, queryType, key, value);
         return list;
     }
 
@@ -401,6 +402,7 @@ public class DinnerIndexController
 
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 String url = "jdbc:mysql://localhost:3306/limmai?useUnicode=true&characterEncoding=UTF8";
+
                 Connection conn = DriverManager.getConnection(url, "root", "12345");//Limmai007
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery("select order_id,of_custom_id,order_money from orders WHERE orders_code='"+orderCodes+"'");
@@ -408,7 +410,6 @@ public class DinnerIndexController
                     modelMap.addAttribute("order_id", rs.getString(1));
                     modelMap.addAttribute("user_id", rs.getString(2));
                     modelMap.addAttribute("money", rs.getString(3));
-                   System.out.println("orderId->"+rs.getString(1));
                 }
                 rs.close();
                 stmt.close();
