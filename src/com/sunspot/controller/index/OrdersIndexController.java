@@ -90,7 +90,7 @@ public class OrdersIndexController
         
         modelMap.addAttribute("is_appends", commentsService.queryAppEndByOrderId(orders));
         //匹配订单中商品的状态
-        modelMap.addAttribute("isShels", ordersService.goodsStatusInOrders(orders));
+        //modelMap.addAttribute("isShels", ordersService.goodsStatusInOrders(orders));
 
     }
 

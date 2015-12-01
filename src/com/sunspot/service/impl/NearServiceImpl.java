@@ -74,7 +74,7 @@ public class NearServiceImpl implements NearService
             ShopExt.class);
             //剔除被屏蔽的商店
             for(int i=0;i<list.size();i++){
-            	if(getShopStatus(list.get(i)))list.remove(i);
+            	if(!getShopStatus(list.get(i)))list.remove(i);
             }
             return list ; 
         }
@@ -88,7 +88,7 @@ public class NearServiceImpl implements NearService
                                               ShopExt.class);
             //剔除被屏蔽的商店
             for(int i=0;i<list.size();i++){
-            	if(getShopStatus(list.get(i)))list.remove(i);
+            	if(!getShopStatus(list.get(i)))list.remove(i);
             }
             return list ; 
         }
@@ -107,7 +107,8 @@ public class NearServiceImpl implements NearService
                                               ShopExt.class);
             //剔除被屏蔽的商店
             for(int i=0;i<list.size();i++){
-            	if(getShopStatus(list.get(i)))list.remove(i);
+            	if(!getShopStatus(list.get(i)))
+            		list.remove(i);
             }
             return list ; 
         }
@@ -120,7 +121,7 @@ public class NearServiceImpl implements NearService
             ShopExt.class);
             //剔除被屏蔽的商店
             for(int i=0;i<list.size();i++){
-            	if(getShopStatus(list.get(i)))list.remove(i);
+            	if(!getShopStatus(list.get(i)))list.remove(i);
             }
             return list ; 
         }else if(filterType == 5){
@@ -131,7 +132,7 @@ public class NearServiceImpl implements NearService
             ShopExt.class);
             //剔除被屏蔽的商店
             for(int i=0;i<list.size();i++){
-            	if(getShopStatus(list.get(i)))list.remove(i);
+            	if(!getShopStatus(list.get(i)))list.remove(i);
             }
             return list ; 	
         }else if(filterType == 6){
@@ -142,7 +143,7 @@ public class NearServiceImpl implements NearService
             ShopExt.class);
             //剔除被屏蔽的商店
             for(int i=0;i<list.size();i++){
-            	if(getShopStatus(list.get(i)))list.remove(i);
+            	if(!getShopStatus(list.get(i)))list.remove(i);
             }
             return list ; 	
         }
@@ -188,7 +189,7 @@ public class NearServiceImpl implements NearService
      */
     public boolean getShopStatus(ShopExt shopExt){
     	UserInfo userInfo=baseDao.getByHibernate(UserInfo.class,shopExt.getOfUserId());
-    	if(userInfo.getStatus()==3||userInfo.getStatus()==1) return true;
+    	if(userInfo.getStatus()==0) return true;
     	return false;
     }
     
@@ -199,7 +200,7 @@ public class NearServiceImpl implements NearService
     public boolean getShopStatus(String shopId){
     	Shop shop=baseDao.getByHibernate(Shop.class, shopId);
     	UserInfo userInfo=baseDao.getByHibernate(UserInfo.class,shop.getOfUserId());
-    	if(userInfo.getStatus()==3||userInfo.getStatus()==1) return true;
+    	if(userInfo.getStatus()==0) return true;
     	return false;
     }
 

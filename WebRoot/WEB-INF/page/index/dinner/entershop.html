@@ -27,10 +27,7 @@
 			<a href="javascript:window.history.back();" class="go_back"> <img
 				src="/dist/images/go_back.png" alt="" />
 			</a>
-<<<<<<< HEAD
-<#if status!=0><!-- 商店没有被屏蔽 -->
-=======
->>>>>>> origin/master
+<#if status==0>
 			<div class="title">
 				<span>${shop.shopName}</span> 
 			    <#if Request.customLike ??>
@@ -222,7 +219,7 @@
 			</div>
 		</div>
 		</#if>
-<#else>
+	<#else>
 		该店已被注销！
 </#if>
 	</div>
