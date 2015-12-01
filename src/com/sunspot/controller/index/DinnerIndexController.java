@@ -247,6 +247,8 @@ public class DinnerIndexController
         modelMap.addAttribute("cookbooks",
                 cookbookService.queryCookbookShowIndex(shopId, value, cooktype));
         if(nearService.getShopStatus(shopId))modelMap.addAttribute("status", 0);//商店被屏蔽的标识
+        else
+        	modelMap.addAttribute("status", 1);
         cheskShopLike(modelMap , session ,shop.getShopId(),0);
     }
 

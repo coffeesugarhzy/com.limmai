@@ -188,18 +188,19 @@ public class NearServiceImpl implements NearService
      */
     public boolean getShopStatus(ShopExt shopExt){
     	UserInfo userInfo=baseDao.getByHibernate(UserInfo.class,shopExt.getOfUserId());
-    	if(userInfo.getStatus()==3||userInfo.getStatus()==1) return true;
+    	if(userInfo.getStatus()==0) return true;
     	return false;
     }
     
     /**
      * 根据商店id查询商店是否已被屏蔽或被注销
      * @param shopExt
+     * 0正常 1 屏蔽 2 禁言 3 注销
      */
     public boolean getShopStatus(String shopId){
     	Shop shop=baseDao.getByHibernate(Shop.class, shopId);
     	UserInfo userInfo=baseDao.getByHibernate(UserInfo.class,shop.getOfUserId());
-    	if(userInfo.getStatus()==3||userInfo.getStatus()==1) return true;
+    	if(userInfo.getStatus()==0) return true;
     	return false;
     }
 
