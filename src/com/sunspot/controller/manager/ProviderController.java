@@ -292,6 +292,7 @@ public class ProviderController
         userInfo.setAddDate(Utils.getNowDate());
         userInfo.setIsSysuser(1);
         userInfo.setUserType(1);
+        userInfo.setStatus(0);
         int tip = providerService.add(userInfo);
 
         request.setAttribute("resultCode", tip);

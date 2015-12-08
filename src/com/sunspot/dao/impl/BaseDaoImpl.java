@@ -283,6 +283,10 @@ public class BaseDaoImpl implements BaseDao
         int all = this.jdbcTemplate.queryForObject(sql, Integer.class);
         return all;
     }
+    public String queryForString (String sql,String param){
+    	String all = this.jdbcTemplate.queryForObject(sql, String.class,param);
+    	return all;
+    }
 
     public int queryForIntPage(String sql, Object[] param, int maxResults)
     {

@@ -59,6 +59,7 @@ public class UserInfoController
         user.setUserRole(userRole);
         user.setLoginPassword(MD5.encrypt(user.getLoginPassword()));
         user.setAddDate(DateUtil.getCurrentDateTime());
+        user.setStatus(0);
         service.add(user);
         model.addAttribute("resultCode", 1);
         return "rsp/submitrsp";

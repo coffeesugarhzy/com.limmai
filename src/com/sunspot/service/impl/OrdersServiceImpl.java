@@ -180,7 +180,7 @@ public class OrdersServiceImpl implements OrdersService
         }
         else
         {
-            querysql += " order by a.add_date limit ?,?";
+            querysql += " order by a.add_date desc limit ?,?";
             queryParam = new Object[]
             { list.getCurNum(), list.getRows() };
         }

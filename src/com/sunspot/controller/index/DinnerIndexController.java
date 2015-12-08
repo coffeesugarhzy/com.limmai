@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.sunspot.common.HttpUtil;
 import com.sunspot.common.MyUtil;
 import com.sunspot.common.Utils;
-import com.sunspot.pojo.Cookbook;
 import com.sunspot.pojo.CookbookType;
 import com.sunspot.pojo.CustomInfo;
 import com.sunspot.pojo.CustomLike;
@@ -274,6 +273,7 @@ public class DinnerIndexController
         if(nearService.getShopStatus(shopId))modelMap.addAttribute("status", 0);//商店被屏蔽的标识
         else
         	modelMap.addAttribute("status", 1);
+
         cheskShopLike(modelMap , session ,shop.getShopId(),0);
     }
 
@@ -430,7 +430,7 @@ public class DinnerIndexController
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 String url = "jdbc:mysql://localhost:3306/limmai?useUnicode=true&characterEncoding=UTF8";
 
-                Connection conn = DriverManager.getConnection(url, "root", "12345");//Limmai007
+                Connection conn = DriverManager.getConnection(url, "root", "Limmai007");//Limmai007
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery("select order_id,of_custom_id,order_money from orders WHERE orders_code='"+orderCodes+"'");
                 while (rs.next()) {
