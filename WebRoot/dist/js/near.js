@@ -32,8 +32,8 @@
 		});
 	}
 	 
-	function formatMarks(marks){
-    	if(marks == 0) return '<i></i><i></i><i></i><i></i><i></i>' ; 
+	function formatMarks(marks){/*marks==0 时为默认 默认5星*/
+    	if(marks == 0) return '<i class="active"></i><i class="active"></i><i class="active"></i><i class="active"></i><i class="active"></i>' ; 
     	else if(marks == 1) return '<i class="active"></i><i></i><i></i><i></i><i></i>' ; 
     	else if(marks == 2) return '<i class="active"></i><i class="active"></i><i></i><i></i><i></i>' ; 
     	else if(marks == 3) return '<i class="active"></i><i class="active"></i><i class="active"></i><i></i><i></i>' ; 

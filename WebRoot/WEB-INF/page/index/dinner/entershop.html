@@ -56,8 +56,8 @@
 		<!-- 商品的分类和搜索框 -->
 		<div class="introduce clearFix" style="border-top-style:none">
 			<div class="search_shop">
-			    <select name="cooktype" id="cooktype" style="float:left;width:40%;padding:8px;">
-			        <option value="">全部商铺分类</option>
+			    <select name="cooktype" id="cooktype" style="float:left;width:50%;padding:8px; border:#ccc 2px solid;">
+			        <option value="">商品分类</option>
 			        <#if cooktype=='default'>
 			           <option value="default" selected=true>默认分类</option>
 			          <#else>
@@ -74,7 +74,7 @@
 			           </#list>
 			        </#if>
 			    </select>
-				<input type="text" id='searchVal' value="${value}" style="float:left;width:50%;" placeholder="本店搜索" />
+				<input type="text" id='searchVal' value="${value}" style="float:left;width:40%;" placeholder="本店搜索" />
 				 <a id="search" href="javascript:void(0);" style="float:left;width:10%;"></a>
 				<div style="clear:both;"></div>	
 			</div>

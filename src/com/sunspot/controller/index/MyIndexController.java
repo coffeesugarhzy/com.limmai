@@ -214,6 +214,7 @@ public class MyIndexController
         customer.setAddDate(DateUtil.getCurrentDateTime());
         customer.setTelphone(phone);
         customer.setLoginPassword(password);
+        customer.setStatus(0);
         service.add(customer);
         boolean result = service.customerLogin(phone, password, session);
         if (false == result)

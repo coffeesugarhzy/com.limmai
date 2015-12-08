@@ -76,6 +76,7 @@ public class NearServiceImpl implements NearService
             for(int i=0;i<list.size();i++){
             	if(getShopStatus(list.get(i)))list.remove(i);
             }
+            list=setMarks(list);
             return list ; 
         }
         //距离
@@ -90,6 +91,7 @@ public class NearServiceImpl implements NearService
             for(int i=0;i<list.size();i++){
             	if(getShopStatus(list.get(i)))list.remove(i);
             }
+            list=setMarks(list);
             return list ; 
         }
         //评价
@@ -109,6 +111,7 @@ public class NearServiceImpl implements NearService
             for(int i=0;i<list.size();i++){
             	if(getShopStatus(list.get(i)))list.remove(i);
             }
+            list=setMarks(list);
             return list ; 
         }
         //搜索
@@ -122,6 +125,7 @@ public class NearServiceImpl implements NearService
             for(int i=0;i<list.size();i++){
             	if(getShopStatus(list.get(i)))list.remove(i);
             }
+            list=setMarks(list);
             return list ; 
         }else if(filterType == 5){
             if(StringUtils.isBlank(filter)) filter="%" ; 
@@ -133,6 +137,7 @@ public class NearServiceImpl implements NearService
             for(int i=0;i<list.size();i++){
             	if(getShopStatus(list.get(i)))list.remove(i);
             }
+            list=setMarks(list);
             return list ; 	
         }else if(filterType == 6){
             if(StringUtils.isBlank(filter)) filter="%" ; 
@@ -144,6 +149,7 @@ public class NearServiceImpl implements NearService
             for(int i=0;i<list.size();i++){
             	if(getShopStatus(list.get(i)))list.remove(i);
             }
+            list=setMarks(list);
             return list ; 	
         }
 
@@ -203,5 +209,33 @@ public class NearServiceImpl implements NearService
     	if(userInfo.getStatus()==0) return true;
     	return false;
     }
-
+    
+    /**
+     * 从订单里找出商品的评分并计算总分
+     * @param shopId
+     * @return 平均分 最高5分
+     */
+   public int getMarks(String shopId)
+   {
+	   String sql="SELECT marks FROM comments,orders WHERE of_orders_id=ORDER_ID ORDER BY marks AND OF_SHOP_ID=?";
+	   List<String> list=baseDao.query(sql, new Object[]{shopId}, String.class);
+	   int count=0;
+	   count=list.size();
+	   
+	   return count;
+   }
+   
+   /**
+    * 将查询出的商店列表填上评分
+    * @param list 已经查询出的商店列表
+    * @return
+    */
+   public List<ShopExt> setMarks(List<ShopExt> list)
+   {
+	   for(int i=0;i<list.size();i++)
+	   {
+		   list.get(i).setMarks(getMarks(list.get(i).getShopId()));
+	   }
+	   return list;
+   }
 }

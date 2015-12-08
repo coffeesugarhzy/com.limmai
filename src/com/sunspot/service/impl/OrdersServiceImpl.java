@@ -1185,12 +1185,13 @@ public class OrdersServiceImpl implements OrdersService
 		List<Integer> isShels=new ArrayList<Integer>();
 		for(OrdersIndexExt ordersIndexExt :list){
 			for(OrdersDetailExt detailExt:ordersIndexExt.getOrderdetailsext()){
-				Cookbook cookbook=baseDao.getByHibernate(Cookbook.class, detailExt.getCookbookId());
+				/*Cookbook cookbook=baseDao.getByHibernate(Cookbook.class, detailExt.getCookbookId());
 				if(cookbook.getIsShel()==0){
 					isShels.add(0);
 				}
 				else
-					isShels.add(1);
+					isShels.add(1);*/
+				isShels.add(1);
 			}
 		}
 		return isShels;

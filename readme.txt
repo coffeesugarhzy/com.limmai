@@ -66,4 +66,54 @@
 	2、com.sunspot.service.impl.OrdersServiceImpl
 			添加自动收货方法autoReceiveGoods(String, String);
 			
+	2015-12-4
+	韦英飘 修改为‘+‘ 删除为’-‘
+	com/sunspot/controller/index/MyIndexController
+		217行 	+customer.setStatus(0); //注册时帐号正常
+	WEB-INF/page/index/index/toRegister.html
+		66行 		+<input type="checkbox" style="width:32px;height:32px;" name="accept" id="accept">
+	WEB-INF/page/index/index/toRegShop.html
+		68行		+<input type="checkbox" style="width:32px;height:32px;" name="accept" id="accept">
+	com/sunspot/controller/index/DinnerIndexController
+		224-245行
+			/**
+     		* 根据订单Id,查询商品信息
+    		* @param orderId
+    		* @param modelMap
+     		* @param session
+     		* @author scatlet
+     		*/
+    		public void details(String orderId,ModelMap modelMap,HttpSession session)
+    		{
+    			modelMap.addAttribute("weekDay", Utils.getWeekDay());
+        		modelMap.addAttribute("curTime", Utils.getCurDate("HH:mm"));
+        		List<CookbookExt> cookbook=cookbookService.queryCookBookByOrder(orderId);
+        		List<CookbookIndexExt> list=new ArrayList<CookbookIndexExt>();
+        
+        		//收藏
+        		for(CookbookExt c:cookbook){
+        			CookbookIndexExt cookbookIndexExt=cookbookService.queryByIndexId(c.getCookbooksId());
+        			list.add(cookbookIndexExt);
+        			cheskShopLike(modelMap, session, c.getCookbooksId(), 1) ;
+        		}
+        		modelMap.addAttribute("list", list);
+   			}
+   		WEB-INF/page/index/index/myConsume.html
+   			46行   	+<li class="clearFix" onclick="/index/dinner/details.do?cookbooksId=${os.orderId}">
+   		WEB-INF/page/index/dinner/detail.html
+   			211-212 行	if(confirm("请先登陆"))
+							window.location.href='/index/index/my.do';
+		+WEB-INF/page/index/dinner/details.html
+		
+		NearServiceImpl.java
 
+			+public int getMarks(String shopId);
+			+public List<ShopExt> setMarks(List<ShopExt> list);
+			
+			public List<ShopExt> query(int currentSize,int pageSize,String longitude,String latitude,int filterType,String filter)
+			所有的 return list;之前 +list=setMarks(list);
+		
+		near.js
+		36 行
+		entershop.html
+		59、77、78行

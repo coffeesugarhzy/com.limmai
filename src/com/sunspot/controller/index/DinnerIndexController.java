@@ -19,11 +19,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.sunspot.common.HttpUtil;
 import com.sunspot.common.MyUtil;
 import com.sunspot.common.Utils;
+import com.sunspot.pojo.Cookbook;
 import com.sunspot.pojo.CookbookType;
 import com.sunspot.pojo.CustomInfo;
 import com.sunspot.pojo.CustomLike;
 import com.sunspot.pojo.Orders;
 import com.sunspot.pojo.Shop;
+import com.sunspot.pojoext.CookbookExt;
 import com.sunspot.pojoext.CookbookIndexExt;
 import com.sunspot.pojoext.DataGridModel;
 import com.sunspot.service.AreaService;
@@ -218,7 +220,30 @@ public class DinnerIndexController
         //收藏　
         cheskShopLike(modelMap, session, cookbooksId, 1) ; 
     }
-
+    
+    /**
+     * 根据订单Id,查询商品信息
+     * @param orderId
+     * @param modelMap
+     * @param session
+     * @author scatlet
+     */
+    @RequestMapping(value = "details")
+    public void details(String orderId,ModelMap modelMap,HttpSession session)
+    {
+    	modelMap.addAttribute("weekDay", Utils.getWeekDay());
+        modelMap.addAttribute("curTime", Utils.getCurDate("HH:mm"));
+        List<CookbookExt> cookbook=cookbookService.queryCookBookByOrder(orderId);
+        List<CookbookIndexExt> cookbooks=new ArrayList<CookbookIndexExt>();
+        
+        //收藏
+        for(CookbookExt c:cookbook){
+        	CookbookIndexExt cookbookIndexExt=cookbookService.queryByIndexId(c.getCookbooksId());
+        	cookbooks.add(cookbookIndexExt);
+        	cheskShopLike(modelMap, session, c.getCookbooksId(), 1) ;
+        }
+        modelMap.addAttribute("list", cookbooks);
+    }
     /**
      * 跳转到查询列表页面
      */

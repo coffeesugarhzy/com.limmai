@@ -43,13 +43,15 @@
 				<li>
 				<h2 class="title clearFix">${os.shopName}</h2>
                 <ul class="foods-list">
-                     <li class="clearFix">
+                     <li class="clearFix" >
+              			<a href="/index/dinner/details.do?orderId=${os.orderId}">
                          <img class="fl" src="${os.shopLogo}" width="70" height="70" alt="">
                          <p class="starts">
                              <script>document.write(getStart(${os.marks!0}));</script>
                              <span class="money">¥${os.cost}/人</span>
                          </p>
                          <p class="addresses">地址：<span>${os.address}</span></p>
+                         </a>
                      </li>                                                               
                  </ul>
 				<#if 0 == os.orderType>
@@ -92,4 +94,11 @@
 </body>
 <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
 <script type="text/javascript" src="js/base.js"></script>
+<script type="text/javascript">
+	function goodsDetials(str){
+	alert(str);
+		var orderId=str;
+		window.location.href='/index/dinner/details.do?cookbooksId='+orderId;
+	}
+</script>
 </html>
