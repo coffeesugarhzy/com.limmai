@@ -67,4 +67,4 @@
 	2、com.sunspot.service.impl.OrdersServiceImpl
 			添加自动收货方法autoReceiveGoods(String, String);
 			
-
+ KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
