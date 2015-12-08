@@ -46,7 +46,7 @@ public class CommentsServiceImpl implements CommentsService {
 
 	private static final String QUERY_COMMENTS_COUNT = "select count(1) from comments c left join orders o on c.of_orders_id=o.order_id where o.of_shop_id=? ";
 
-	private static final String QUERY_COMMENTS = "select c.comments_id,ci.custom_name,ci.telphone,o.orders_code,o.pay_money,c.comment_type,c.marks,c.add_date from comments c left join orders o on c.of_orders_id=o.order_id left join custom_info ci on c.of_customer_id=ci.custom_id where o.of_shop_id=? ";
+	private static final String QUERY_COMMENTS = "select c.comments_id,ci.custom_name,ci.telphone,o.orders_code,o.pay_money,o.order_money,c.comment_type,c.marks,c.add_date from comments c left join orders o on c.of_orders_id=o.order_id left join custom_info ci on c.of_customer_id=ci.custom_id where o.of_shop_id=? ";
 
 	private static final String QUERY_COMMENTSBYID = "select c.comments_id,ci.custom_name,ci.telphone,o.orders_code,o.pay_money,c.comment_type,c.marks,c.add_date from comments c left join orders o on c.of_orders_id=o.order_id left join custom_info ci on c.of_customer_id=ci.custom_id where c.comments_id=? ";
 
@@ -103,12 +103,18 @@ public class CommentsServiceImpl implements CommentsService {
 		}
 		List<CommentsExt> list0 = new ArrayList<CommentsExt>();
 		CommentsExt commentsExt;
+//		String orderIdSQL = " select of_orders_id from comments where comments_id=? ";
+//		String orderMoneySQL = " select order_money from orders where order_id=? ";
 		for (Map<String, Object> map : results) {
 			commentsExt = new CommentsExt();
 			commentsExt.setCommentsId(Utils.objToStr(map.get("comments_id")));
 			commentsExt.setCustomName(Utils.objToStr(map.get("custom_name")));
 			commentsExt.setTelphone(Utils.objToStr(map.get("telphone")));
 			commentsExt.setOrdersCode(Utils.objToStr(map.get("orders_code")));
+//			String order_id = baseDao.queryForString(orderIdSQL,commentsExt.getCommentsId());
+//
+//			String pay_money = baseDao.queryForString(orderMoneySQL,order_id);
+			commentsExt.setOrder_money(Utils.objToDouble(map.get("order_money")));
 			commentsExt.setPayMoney(Utils.objToDouble(map.get("pay_money")));
 			commentsExt.setCommentType(Utils.objToInt(map.get("comment_type")));
 			commentsExt.setMarks(Utils.objToInt(map.get("marks")));

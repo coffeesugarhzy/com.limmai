@@ -70,12 +70,12 @@
 		给商品评分:<input type="hidden" name="marks" id="myMarks" value="0" />
 		<script type="text/javascript">
 			//生成5个星星
-			document.write("<p id='star'class='border'> ");
+			document.write("<p id='star' class='start'> ");
 			for (var i = 0; i < 5; i++) {
 				document
-						.write("<a href='javascript:void(0)' class='star' onclick='getStar("
+						.write("<i onclick='getStar("
 								+ i
-								+ ")'><img src='../../../../images/whiteheat.png'/></a>");
+								+ ")'></i>");
 			}
 			document.write("</p>");
 		</script>
@@ -134,13 +134,13 @@
 			break;
 		}
 		for (var j = 0; j <= i; j++) {
-			str += "<a href='javascript:void(0)' class='star' onclick='getStar("
-					+ j + ")'><img src='../../../../images/redheat.png'/></a>";
+			str += "<i class='active' onclick='getStar("
+					+ j + ")'></i>";
 		}
 		for (var j = i + 1; j < 5; j++) {
-			str += "<a href='javascript:void(0)' class='star' onclick='getStar("
+			str += "<i onclick='getStar("
 					+ j
-					+ ")'><img src='../../../../images/whiteheat.png'/></a>";
+					+ ")'></i>";
 		}
 		div.innerHTML = str;
 		str = "";

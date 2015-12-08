@@ -53,6 +53,8 @@ public interface BaseDao
     int queryForIntPage(String sql, Object[] param);
 
     int queryForIntPage(String sql);
+    
+    String queryForString(String sql,String param);
 
     int queryForIntPage(String sql, Object[] param, int maxResults);
 

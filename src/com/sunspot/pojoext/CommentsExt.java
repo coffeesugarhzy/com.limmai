@@ -24,8 +24,18 @@ public class CommentsExt
     private Integer marks;
 
     private String addDate;
+    
+    private double order_money;
 
-    private List<CommentsPic> commentsPics = new ArrayList<CommentsPic>(0);
+    public double getOrder_money() {
+		return order_money;
+	}
+
+	public void setOrder_money(double order_money) {
+		this.order_money = order_money;
+	}
+
+	private List<CommentsPic> commentsPics = new ArrayList<CommentsPic>(0);
 
     private List<CommentsContent> commentsContents = new ArrayList<CommentsContent>(
             0);
