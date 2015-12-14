@@ -1,0 +1,138 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta content="IE=7" http-equiv="X-UA-Compatible">
+
+<link type="text/css" rel="stylesheet" href="/dist/css/reset.css">
+
+<link href="/dist/jqGrid/css/ui.jqgrid.css" rel="stylesheet"
+	type="text/css" />
+<link href="/dist/jqGrid/css/jquery-ui.custom.css" rel="stylesheet"
+	type="text/css" />
+<link href="/dist/jqGrid/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/dist/css/xtree.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/dist/js/xtree.js"></script>
+</head>
+
+<body>
+	<div class="subnav">
+		<div class="content-menu ib-a blue line-x">
+			<a
+				onclick="top.dsIframe('添加节点','/manager/category/addCategory.do',700,500)"
+				class="add fb"><em>添加节点 </em> 
+			</a>
+			<a
+				onclick="top.dsIframe('修改节点','/manager/category/modifyCategory.do',700,500)"
+				class="add fb"><em>修改节点 </em> 
+			</a>
+		</div>
+	</div>
+	<div class="pad-lr-10">
+		<form method="get" name="searchform">
+			<table width="100%" cellspacing="0" style="font-size:12px"
+				class="search-form">
+				<tbody>
+					<tr>
+						<td>
+							<div class="explain-col">    
+								搜索关键字： <input type="text" class="input-text" value=""
+									name="keyword"> <span
+									class="content-menu ib-a blue line-x" style=""> <a
+									onclick="search_keyword()" class="add fb"><em>搜索 </em></a>
+								</span>
+							</div>
+						</td>
+
+					</tr>
+				</tbody>
+			</table>
+		</form>
+		<div id="list">
+			<script type="text/javascript">
+		  <#list list as c>
+		  		<#if c.depth==1>
+		  			var tree = new WebFXTree('${c.categoryName}');
+		  			<#else>
+		  				<#if c.depth==2>
+		  					var node${c.depth} = new WebFXTreeItem("${c.categoryName}");   //node2
+		  					tree.add(node${c.depth});
+		  					<#else>
+		  						var node${c.depth} = new WebFXTreeItem("${c.categoryName}");  //node3
+		  						node${c.depth-1}.add(node${c.depth});    //
+		  				</#if>
+		  		</#if>
+		  </#list>	
+			document.write(tree);
+  	</script>
+		</div>
+		<div id="no"></div>
+		<div id="pager"></div>
+		<div id="test">
+			
+		</div>	
+	</div>
+	<!-- jqgrid js引入　-->
+	<script type="text/javascript"
+		src="/dist/jqGrid/js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript"
+		src="/dist/jqGrid/js/jquery.jqGrid.min.js"></script>
+	<script type="text/javascript"
+		src="/dist/jqGrid/js/i18n/grid.locale-cn.js"></script>
+	<script charset="utf-8" src="/dist/js/editor.js"></script>
+	<script type="text/javascript">
+		function search_keyword() {
+			var name = $.trim($("input[name='keyword']").val());
+			$("#list").jqGrid('setGridParam', {
+				url : "/manager/cookbook/listJson.do",
+				postData : {
+					'keyword' : name,
+					'cookType' : 0
+				},
+				page : 1
+			}).trigger("reloadGrid");
+		}
+		function getChecked(str){
+				document.getElementById("preNode").setAttribute('value', str);
+			}
+		
+		
+		var xmlHttp=null;
+		function t1()
+		{
+			
+			try
+			{
+				xmlHttp=new XMLHttpRequest();
+			}
+			catch(e)
+			{
+				try
+				{
+					xmlHttp=new ActiveXObject("Msxm112.XMLHTTP");				
+				}
+				catch(e)
+				{
+					xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+			}
+		}
+		function getChildNodes(str)
+		{
+			var parentName=document.getElementById(str).value;
+			t1();
+			xmlHttp.open("GET","/manager/category/childNodesJson.do");
+			xmlHttp.onreadystatechange()=function()
+			{
+				if(xmlHttp.readState==4&&xmlHttp.status=200)
+				{
+					<#list xmlHttp.responseText as c>
+						
+					</#list>
+				}
+			}
+			xmlHttp.send(null);
+		}
+	</script>
+</body>
+</html>

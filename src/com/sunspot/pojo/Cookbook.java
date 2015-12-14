@@ -41,6 +41,7 @@ public class Cookbook implements java.io.Serializable
     private Integer orderNum;
     private Integer isShel;//是否上架 0下架 1上架
     private String cookbookType;//自定义类型
+    private String categoryName;//分类名
     // Constructors
 
     /** default constructor */
@@ -48,14 +49,17 @@ public class Cookbook implements java.io.Serializable
     {
     }
     
+   
+
     public Cookbook(String cookbooksId, String logo, String ofShopId,
 			String cookName, Integer cookType, Integer marks, double price,
 			String typeName, String addDate, String updateDate, String suggest,
 			String remarks, Integer isSale, Integer saleDay, double salePrice,
 			Integer isDis, String beginTime, String endTime, double disPrice,
 			Integer disNum, Integer orderNum, Integer isShel,
-			String cookbookType) 
+			String cookbookType, String categoryName) 
     {
+		super();
 		this.cookbooksId = cookbooksId;
 		this.logo = logo;
 		this.ofShopId = ofShopId;
@@ -79,9 +83,12 @@ public class Cookbook implements java.io.Serializable
 		this.orderNum = orderNum;
 		this.isShel = isShel;
 		this.cookbookType = cookbookType;
+		this.categoryName = categoryName;
 	}
 
-    @GenericGenerator(name = "generator", strategy = "uuid2")
+
+
+	@GenericGenerator(name = "generator", strategy = "uuid2")
     @Id
     @GeneratedValue(generator = "generator")
     @Column(name = "COOKBOOKS_ID", unique = true, nullable = false, length = 36)
@@ -333,4 +340,13 @@ public class Cookbook implements java.io.Serializable
 		this.cookbookType = cookbookType;
 	}
 
+	@Column(name="CATEGORY_NAME" ,length=36)
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+	
 }
