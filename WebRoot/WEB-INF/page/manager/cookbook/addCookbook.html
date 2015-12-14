@@ -45,10 +45,12 @@
 							</tr>
 							<tr>
 								<td>商品类型</td>
-								<td><select id="typeName" name="typeName"> <#if
-										dataTypes??><#list dataTypes as dts>
-										<option value="${dts.typeName}">${dts.typeName}</option>
-										</#list></#if>
+								<td><select id="typeName" name="typeName"> 
+										<#if dataTypes??>
+											<#list dataTypes as dts>
+												<option value="${dts.typeName}">${dts.typeName}</option>
+											</#list>
+										</#if>
 								</select></td>
 							</tr>
 							<tr class="cookTypeName">

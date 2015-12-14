@@ -40,7 +40,16 @@
 				</tbody>
 			</table>
 		</form>
-		<table id="list"></table>
+		<table id="list">
+			<#list list as c>
+				<#if c==1>
+				</#if>
+				<#if c==2>
+				</#if>
+				<#if c>2>
+				</#if>
+			</#list>
+		</table>
 		<div id="no"></div>
 		<div id="pager"></div>
 	</div>

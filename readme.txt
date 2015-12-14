@@ -119,3 +119,31 @@
 		36 行
 		entershop.html
 		59、77、78行
+		
+		Category.java  //商品分类
+		
+		category_id 	varchar(36); //id
+		category_name	varchar(40);//分类名
+		lft				int;		//左值
+		rht				int;		//右值
+		depth			int			//节点层次      默认为1
+		
+		+category		视图包
+		+CategoryService.java	 
+		+CategoryServiceImpl.java	 
+		+Category.java
+		
+		表是自动建立 但要修改
+		ALTER TABLE category MODIFY depth INT DEFAULT 1;
+		
+		测试数据
+		
+		INSERT INTO category(category_id,category_name,lft,rgt) VALUES('1','商品',1,18);
+		INSERT INTO category(category_id,category_name,lft,rgt) VALUES('2','平板电脑',2,7);
+		INSERT INTO category(category_id,category_name,lft,rgt) VALUES('3','冰箱',8,11);
+		INSERT INTO category(category_id,category_name,lft,rgt) VALUES('4','笔记本',12,17);
+		INSERT INTO category(category_id,category_name,lft,rgt) VALUES('5','长虹',3,4);
+		INSERT INTO category(category_id,category_name,lft,rgt) VALUES('6','索尼',5,6);
+		INSERT INTO category(category_id,category_name,lft,rgt) VALUES('7','西门子',9,10);
+		INSERT INTO category(category_id,category_name,lft,rgt) VALUES('8','thinkpad',13,14);
+		INSERT INTO category(category_id,category_name,lft,rgt) VALUES('9','dell',15,16);	 
