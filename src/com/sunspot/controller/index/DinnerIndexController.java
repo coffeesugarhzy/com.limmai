@@ -360,13 +360,14 @@ public class DinnerIndexController
      * 跳转到限时抢购表页面
      */
     @RequestMapping(value = "shopcbdetail")
-    public void shopcbdetail(String cookbooksId, ModelMap modelMap,HttpSession session)
+    public void shopcbdetail(String online,String cookbooksId, ModelMap modelMap,HttpSession session)
     {
         modelMap.addAttribute("weekDay", Utils.getWeekDay());
         modelMap.addAttribute("curTime", Utils.getCurDate("HH:mm"));
         CookbookIndexExt cb = cookbookService.queryByIndexId(cookbooksId) ; 
         modelMap.addAttribute("cookbook", cb );
-        
+        int IntOnline = Integer.parseInt(online) ;
+        modelMap.addAttribute("online",IntOnline );
         //收藏　
         cheskShopLike(modelMap, session, cookbooksId, 1) ; 
     }

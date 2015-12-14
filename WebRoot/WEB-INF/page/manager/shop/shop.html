@@ -31,13 +31,15 @@
 				<div class="content-menu ib-a blue line-x">
 				    <div class="leftBox">
 				      <#if shop??>
-						 <a class="add fb" onclick="setEditView()"><em
-							id="editA">编辑 </em></a>&nbsp;&nbsp; <a class="add fb" id="saleA"
-							onclick="top.dsIframe('限时优惠 [${shop.shopName}]','/manager/shop/toDiscount.do?id=${shop.shopId}',550,230)"><em>限时优惠
-						</em></a>&nbsp;&nbsp; <a class="add fb" id="fullA"
-							href="/manager/shop/updateStatus.do?id=${shop.shopId}"
-							target="submitFrame"><em><#if
-								0==shop.isFull>座位已满<#else>座位未满</#if></em></a>
+						 <a class="add fb" onclick="setEditView()">
+						 	<em id="editA">编辑 </em>
+						</a>&nbsp;&nbsp; 
+						<a class="add fb" id="saleA" onclick="top.dsIframe('限时优惠 [${shop.shopName}]','/manager/shop/toDiscount.do?id=${shop.shopId}',550,230)">
+							<em>限时优惠</em>
+						</a>&nbsp;&nbsp; 
+						<a class="add fb" id="fullA" href="/manager/shop/updateStatus.do?id=${shop.shopId}" target="submitFrame">
+							<em><#if 0==shop.isFull>座位已满<#else>座位未满</#if></em>
+						</a>
 					  <#else>
 					      <a class="add fb" onclick="javascript:document.getElementById('myform').style.display=''"><em>添加店铺</em></a>
 					</#if>		

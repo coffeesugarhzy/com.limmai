@@ -8,6 +8,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta content="telephone=no" name="format-detection" />
 <link rel="stylesheet" href="/dist/css/style.css">
+<link rel="stylesheet" href="/dist/css/entershop.css">
 <style type="text/css">
 	.header{padding-top: 0px;}
 	.contents {
@@ -103,8 +104,10 @@
 						    
 						    <!-- List商品的链接 -->
 			                <li class="clearFix" >
-			                    <img onclick="javascript:window.location.href='/index/dinner/shopcbdetail.do?cookbooksId=${cks.cookbooksId}'" class="fl" src="${cks.logo}" width="70" height="70" alt="" >
-			                    <p class="name">${cks.cookName}</p>
+			                    <img onclick="javascript:window.location.href='/index/dinner/shopcbdetail.do?cookbooksId=${cks.cookbooksId}&online=${shop.online}'" class="fl" src="${cks.logo}" width="70" height="70" alt="" >
+			                    <p class="name" >
+			                    	<a href="/index/dinner/shopcbdetail.do?cookbooksId=${cks.cookbooksId}&online=${shop.online}">${cks.cookName}</a>
+			                    </p>
 			                    <#if 0==cks.cookType>
 							      <p class="intro">类型：${cks.typeName}</p>
 							    <#else>
@@ -117,9 +120,15 @@
 									    <span class="new-price">¥${cks.price}</span>
 									</#if>
 			                    </p>
+			                    <#if shop.online??>
+			                    <#if 1==shop.online>
 			                <a class="sub" ontouchend="lessFunc('${cks.cookbooksId}');"></a>
 			                    	<span class="food-num" id="num${cks.cookbooksId}">0</span>
 							<a class="add" ontouchend="plusFunc('${cks.cookbooksId}','${cks.cookName}','${cks.logo}', '${cks.ofShopId}', '${cks.shopName}', '${cks.price?string('######################.##')}', '${saleType}','${salePrice}', '${suggest}')"></a>
+							<#else>
+							<p class="hidden_add">休息中...</p>
+							</#if>
+							</#if>
 							</li>
 			            </#list>
 		            </ul>
@@ -203,7 +212,11 @@
 								</#if>
 								<li class="fl"><img src="${ps.logo}" width="150px" height="150px" alt="" onclick=javascript:window.location.href='/index/dinner/shopcbdetail.do?cookbooksId=${ps.cookbooksId}'>
 									<p class="name">
-									   <#if ps.cookName?length < 8>${ps.cookName}<#else>${ps.cookName?substring(0,8)}...</#if>
+									   <#if ps.cookName?length < 8>
+									   		${ps.cookName}
+									   <#else>
+									   		${ps.cookName?substring(0,8)}...
+									   </#if> 
 									</p>
 									<p class="price">
 										<#if 0 <= saleType?number>
@@ -211,7 +224,8 @@
 										<#else>
 										    <span class="new-price">¥${ps.price}</span>
 										</#if>
-									</p></li> <#if 1==ps_index%2>
+									</p>
+								</li> <#if 1==ps_index%2>
 							</ul>
 						</li></#if> </#list>
 					</ul>
@@ -240,7 +254,7 @@
 			<#if shop.online == 1>
  			<a href="javascript:toConfirm();">&nbsp;选好了</a>
 			<#else>
-			<p style="background-color: #FFF8DC;">店家休息中..</p>
+			<p class="rest">休息中..</p>
 			</#if>
 			</#if>
 		</div>

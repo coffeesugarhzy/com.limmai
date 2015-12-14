@@ -65,7 +65,7 @@ public class NearServiceImpl implements NearService
             String filter)
     {  
         // 分类
-        if (filterType == 1)
+         if (filterType == 1)
         {  
             if(StringUtils.isBlank(filter)) filter="%" ; 
             String sql = SHOP_ALL_SQL + "where a.type_name like ? order by a.distance asc limit ?,?"; 
@@ -123,7 +123,8 @@ public class NearServiceImpl implements NearService
             ShopExt.class);
             //剔除被屏蔽的商店
             for(int i=0;i<list.size();i++){
-            	if(getShopStatus(list.get(i)))list.remove(i);
+            	if(!getShopStatus(list.get(i)))
+            		list.remove(i);
             }
             list=setMarks(list);
             return list ; 
@@ -194,8 +195,11 @@ public class NearServiceImpl implements NearService
      */
     public boolean getShopStatus(ShopExt shopExt){
     	UserInfo userInfo=baseDao.getByHibernate(UserInfo.class,shopExt.getOfUserId());
-    	if(userInfo.getStatus()==0) return true;
-    	return false;
+    	if(userInfo.getStatus()==0){
+    		return true;
+    	} else {
+    		return false;
+    	}
     }
     
     /**

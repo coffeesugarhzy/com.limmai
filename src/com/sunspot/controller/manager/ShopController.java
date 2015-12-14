@@ -165,7 +165,7 @@ public class ShopController
     public void shop(HttpServletRequest request, ModelMap modelMap)
     {
         modelMap.addAttribute("dataTypes",
-                dataTypeService.queryByParentId("1001"));
+                dataTypeService.queryByParentId("3001"));
         modelMap.addAttribute("shop", shopService.queryByUserId(request));
         modelMap.addAttribute("areas", Utils.ObjectToJson(areaService.queryByNoPage()));
     }
