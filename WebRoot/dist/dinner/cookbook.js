@@ -53,16 +53,17 @@ function ajaxFunc() {
                 var content = data.content;
                 var weekDay = $("#weekDay").val();
                 var curTime = $("#curTime").val();
-                var shopId, shopName, cookbooksId, cookName, logo, price, saleprice, saleType, suggest;
+                var shopId, shopName, cookbooksId, cookName, logo, price, saleprice, saleType, suggest,isShel,online;
                 for ( var i = 0; i < len; i++) {
                     cookbooksId = content[i].cookbooksId;
+                    
                     cookName = content[i].cookName;
                     logo = content[i].logo;
                     shopId = content[i].ofShopId;
                     shopName = content[i].shopName;
                     price = content[i].price;
-                    
-                    isShel=content[i].isShels;
+                    isShel = content[i].isShel;
+                    online = content[i].online;
                     
                     if (0 == content[i].isSale && weekDay == content[i].saleDay) {
                         saleType = 0;
@@ -79,8 +80,8 @@ function ajaxFunc() {
                     
                     
                     temp += "<li class='clearFix' ontouchend=javascript:this.style.background=''  ontouchstart=javascript:this.style.background='#f0f0f0'>";
-                    temp += "<img class='fl'  onclick=javascript:window.location.href='/index/dinner/detail.do?cookbooksId="+cookbooksId+"' src='" + logo + "' width='70' height='70' alt=''>";
-                    temp += "<p class='name'>" + cookName + "</p>";
+                    temp += "<img class='fl'  onclick=javascript:window.location.href='/index/dinner/detail.do?cookbooksId="+cookbooksId+"&online="+online+"' src='" + logo + "' width='70' height='70' alt=''>";
+                    temp += "<p class='name'><a href='/index/dinner/shopcbdetail.do?cookbooksId="+cookbooksId+"&online="+online+"'>"+cookName+"</a></p>";
                     if(isShel==0)
                     	temp +="<p class='name'>" + 商品已经下架 + "</p>";
                     temp += "<p class='intro'>精选自：" + shopName + "</p>";
@@ -92,9 +93,15 @@ function ajaxFunc() {
                     } else {
                         temp += "<p class='price'><span class='new-price'>¥" + price + "</span>&nbsp;</p>";
                     }
-                    temp += '<a class="sub" ontouchend=lessFunc(\"' + cookbooksId + '\");></a>';
-                    temp += "<span id='num" + cookbooksId + "' class=food-num>0</span>";
-                    temp += '<a class="add" ontouchend=plusFunc(\"' + cookbooksId + '\",\"' + cookName.replaceAll(" ","") + '\",\"' + logo + '\",\"' + shopId + '\",\"' + shopName.replaceAll(" ","") + '\",\"' + price + '\",\"' + saleType + '\",\"' + saleprice + '\",\"' + suggest.replaceAll(" ","") + '\");></a>';
+                    if(online == 1){
+                    	
+                    	temp += '<a class="sub" ontouchend=lessFunc(\"' + cookbooksId + '\");></a>';
+                    	temp += "<span id='num" + cookbooksId + "' class=food-num>0</span>";
+                    	temp += '<a class="add" ontouchend=plusFunc(\"' + cookbooksId + '\",\"' + cookName.replaceAll(" ","") + '\",\"' + logo + '\",\"' + shopId + '\",\"' + shopName.replaceAll(" ","") + '\",\"' + price + '\",\"' + saleType + '\",\"' + saleprice + '\",\"' + suggest.replaceAll(" ","") + '\");></a>';
+                    }else{
+                    	temp += "<p class='hidden_add'>休息中</p>";
+                    }
+                    
                     temp += "</li>";
                 }
 

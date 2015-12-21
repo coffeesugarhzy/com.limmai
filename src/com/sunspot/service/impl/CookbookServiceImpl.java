@@ -62,13 +62,13 @@ public class CookbookServiceImpl implements CookbookService
     private static final String COUNT_ALL_COOKBOOK = "select count(1) from cookbook a left join shop b on a.of_shop_id=b.shop_id left join area c on b.of_area_id = c.area_id";
 
     // 根椐ID查询菜谱
-    private static final String QUERY_COOKBOOK_INDEXID = "select a.cookbooks_id,a.logo,a.of_shop_id,a.cook_name,a.cook_type,a.marks,a.price,a.type_name,a.suggest,a.add_date,a.update_date,a.remarks,a.is_sale,a.sale_day,a.sale_price,a.is_dis,a.begin_time,a.end_time,a.dis_price,a.dis_num,a.order_num,a.is_shel,b.shop_name shopName,b.telphone,b.logo shopLogo,c.area_name,a.is_shel,b.address,b.telphone areaName from cookbook a left join shop b on a.of_shop_id=b.shop_id left join area c on b.of_area_id = c.area_id where a.cookbooks_id=?";
+    private static final String QUERY_COOKBOOK_INDEXID = "select a.cookbooks_id,a.logo,a.of_shop_id,a.cook_name,a.cook_type,a.marks,a.price,a.type_name,a.suggest,a.add_date,a.update_date,a.remarks,a.is_sale,a.sale_day,a.sale_price,a.is_dis,a.begin_time,a.end_time,a.dis_price,a.dis_num,a.order_num,a.is_shel,b.shop_name shopName,b.telphone,b.logo shopLogo,online,c.area_name,a.is_shel,b.address,b.telphone areaName from cookbook a left join shop b on a.of_shop_id=b.shop_id left join area c on b.of_area_id = c.area_id where a.cookbooks_id=?";
 
     // 根椐店铺ID查询菜谱
     private static final String QUERY_COOKBOOK_SHOPID = "select a.cookbooks_id,a.logo,a.of_shop_id,a.cook_name,a.cook_type,a.marks,a.price,a.type_name,a.suggest,a.is_sale,a.sale_day,a.sale_price,a.is_dis,a.dis_price,a.begin_time,a.end_time,a.dis_num,a.order_num,a.is_shel,b.shop_name shopName,b.telphone,b.logo shopLogo,c.area_name areaName from cookbook a left join shop b on a.of_shop_id=b.shop_id left join area c on b.of_area_id = c.area_id where a.of_shop_id=? and a.is_shel=1 ";
 
     // 查询所有
-    private static final String QUERY_ALL_COOKBOOK = "select a.cookbooks_id,a.logo,a.of_shop_id,a.cook_name,a.cook_type,a.marks,a.price,a.type_name,a.suggest,a.is_sale,a.sale_day,a.sale_price,a.is_dis,a.dis_price,a.begin_time,a.end_time,a.dis_num,a.order_num,a.is_shel,b.shop_name shopName,b.telphone,b.logo shopLogo,c.area_name areaName from cookbook a left join shop b on a.of_shop_id=b.shop_id left join area c on b.of_area_id = c.area_id";
+    private static final String QUERY_ALL_COOKBOOK = "select a.cookbooks_id,a.logo,a.of_shop_id,a.cook_name,a.cook_type,a.marks,a.price,a.type_name,a.suggest,a.is_sale,a.sale_day,a.sale_price,a.is_dis,a.dis_price,a.begin_time,a.end_time,a.dis_num,a.order_num,a.is_shel,b.shop_name shopName,b.telphone,b.logo shopLogo,online,c.area_name areaName from cookbook a left join shop b on a.of_shop_id=b.shop_id left join area c on b.of_area_id = c.area_id";
 
   
     /**

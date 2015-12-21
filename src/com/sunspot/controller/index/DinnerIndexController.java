@@ -160,16 +160,17 @@ public class DinnerIndexController
             HttpServletRequest request, DataGridModel<CookbookIndexExt> list,
             Integer queryType, Integer key, String value)
     {
-    	List<Integer> isShels=new ArrayList<Integer>();//记录商品状态
+    	//List<Integer> isShels=new ArrayList<Integer>();//记录商品状态
         cookbookService.queryPage(list, queryType, key, value);
-        for(CookbookIndexExt indexExt:list.getContent()){
-    		if(cookbookService.getGoodsStatus(indexExt.getCookbooksId()))
-    			isShels.add(0);
-    		else
-    			isShels.add(1);
-    	}
-        request.setAttribute("isShels",isShels);
-        cookbookService.queryPage(list, queryType, key, value);
+        System.out.println("1");
+//        for(CookbookIndexExt indexExt:list.getContent()){
+//    		if(cookbookService.getGoodsStatus(indexExt.getCookbooksId()))
+//    			isShels.add(0);
+//    		else
+//    			isShels.add(1);
+//    	}
+//        request.setAttribute("isShels",isShels);
+       //cookbookService.queryPage(list, queryType, key, value);
         return list;
     }
 
@@ -360,14 +361,14 @@ public class DinnerIndexController
      * 跳转到限时抢购表页面
      */
     @RequestMapping(value = "shopcbdetail")
-    public void shopcbdetail(String online,String cookbooksId, ModelMap modelMap,HttpSession session)
+    public void shopcbdetail(String cookbooksId, ModelMap modelMap,HttpSession session)
     {
         modelMap.addAttribute("weekDay", Utils.getWeekDay());
         modelMap.addAttribute("curTime", Utils.getCurDate("HH:mm"));
         CookbookIndexExt cb = cookbookService.queryByIndexId(cookbooksId) ; 
         modelMap.addAttribute("cookbook", cb );
-        int IntOnline = Integer.parseInt(online) ;
-        modelMap.addAttribute("online",IntOnline );
+       // int IntOnline = Integer.parseInt(online) ;
+       // modelMap.addAttribute("online",IntOnline );
         //收藏　
         cheskShopLike(modelMap, session, cookbooksId, 1) ; 
     }

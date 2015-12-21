@@ -28,8 +28,18 @@ public class CookbookIndexExt extends Cookbook
 
     // 店铺电话
     private String telphone;
+    //店铺是否在线
+    private int online;
 
-    public String getShopName()
+    public int getOnline() {
+		return online;
+	}
+
+	public void setOnline(int online) {
+		this.online = online;
+	}
+
+	public String getShopName()
     {
         return shopName;
     }

@@ -8,6 +8,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta content="telephone=no" name="format-detection" />
 <link rel="stylesheet" href="/dist/css/style.css">
+<link rel="stylesheet" href="/dist/css/entershop.css">
 </head>
 <body class="bg-gray">
 	<div class="product_details">
@@ -31,7 +32,7 @@
 			</div>
 		</div>
 		<!--订单详情-->
-		<div class="order_contents">
+		<div class="order_contents foods-list">
 			<ul>
 				<li class="sp1">
 				    <#assign saleType = "-1">
@@ -51,10 +52,15 @@
 					<#else> 
 					  <span>￥${cookbook.price}</span>元 / <span>份</span>
 					</#if>
-
+					<#if cookbook.online??>
+					<#if 1==cookbook.online>
 					 <a	class="sub" ontouchend="lessFunc('${cookbook.cookbooksId}');"></a>
 					 <span id="num${cookbook.cookbooksId}" class="food-num">0</span>
 					 <a	class="add" ontouchend="plusFunc('${cookbook.cookbooksId}','${cookbook.cookName}','${cookbook.logo}', '${cookbook.ofShopId}', '${cookbook.shopName}', '${cookbook.price?string('######################.##')}', '${saleType}','${salePrice}', '${suggest}')"></a>
+					 <#else>
+					 <p class="hidden_add">休息中...</p>
+					 </#if>
+					 </#if>
 				</li>
 				<style>
 				 .last-price{font-size: 12px;text-decoration: line-through;}
@@ -187,7 +193,13 @@
 				</span>
 			</div>
 			<div class="submit fr">
+			<#if cookbook.online?? >
+			<#if cookbook.online == 1>
 				<a href="javascript:toConfirm();">&nbsp;选好了</a>
+				<#else>
+				<p class="rest">休息中..</p>
+				</#if>
+			</#if>
 			</div>
 		</div>
 		<div class="food-choice-list">

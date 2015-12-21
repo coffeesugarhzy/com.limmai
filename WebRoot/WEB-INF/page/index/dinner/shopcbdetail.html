@@ -52,8 +52,8 @@
 					<#else> 
 					  <span>￥${cookbook.price}</span>元 / <span>份</span>
 					</#if>
-					<#if online??>
-			        <#if 1==online>
+					<#if cookbook.online??>
+			        <#if 1 == cookbook.online>
 					 <a	class="sub" ontouchend="lessFunc('${cookbook.cookbooksId}');"></a>
 					 	<span id="num${cookbook.cookbooksId}" class="food-num">0</span>
 					 <a	class="add"	ontouchend="plusFunc('${cookbook.cookbooksId}','${cookbook.cookName}','${cookbook.logo}', '${cookbook.ofShopId}', '${cookbook.shopName}', '${cookbook.price?string('######################.##')}', '${saleType}','${salePrice}', '${suggest}')"></a>
@@ -193,8 +193,8 @@
 			</div>
 			<div class="submit fr">
 			<!-- 前台显示店家状态，如果休息状态不允许下单 -->
-			<#if online?? >
-			<#if online == 1>
+			<#if cookbook.online?? >
+			<#if cookbook.online == 1>
 				<a href="javascript:toConfirm();">&nbsp;选好了</a>
 				<#else>
 				<p class="rest">休息中..</p>
