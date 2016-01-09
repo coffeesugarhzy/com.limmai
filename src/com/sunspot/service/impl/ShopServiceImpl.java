@@ -74,7 +74,7 @@ public class ShopServiceImpl implements ShopService
                     { Utils.getKeyword(Utils.transformChar(keyword)) });
             list.setCount(total);
             return baseDao
-                    .query("select shop_id, address, is_book, is_full, link_man, s.logo, type_name, u.user_name as of_user_id, open_time, shop_name, s.telphone,online,is_today,is_weekly from (select shop_id, address, is_book, is_full, link_man, logo, type_name, of_user_id, open_time, shop_name, telphone,online,is_today,is_weekly from shop where shop_name like ? order by add_date limit ?,?) s left join user_info u on s.of_user_id = u.user_id",
+                    .query("select shop_id, address, is_book, s.add_date, is_full, link_man, s.logo, type_name, u.user_name as of_user_id, open_time, shop_name, s.telphone,online,is_today,is_weekly from (select shop_id, address, is_book,add_date,is_full, link_man, logo, type_name, of_user_id, open_time, shop_name, telphone,online,is_today,is_weekly from shop where shop_name like ? order by add_date desc limit ?,?) s left join user_info u on s.of_user_id = u.user_id",
                             new Object[]
                             { Utils.getKeyword(Utils.transformChar(keyword)),
                                     list.getCurNum(), list.getRows() },
@@ -85,7 +85,7 @@ public class ShopServiceImpl implements ShopService
             int total = baseDao.queryForIntPage("select count(*) from shop");
             list.setCount(total);
             return baseDao
-                    .query("select shop_id, address,is_book,is_full,link_man,s.logo, type_name,u.user_name as of_user_id,open_time,shop_name,s.telphone,online,is_today,is_weekly from (select shop_id, address, is_book, is_full, link_man, logo, type_name, of_user_id, open_time, shop_name, telphone,online,is_today,is_weekly from shop order by add_date limit ?,?) s left join user_info u on s.of_user_id = u.user_id",
+                    .query("select shop_id, address,is_book,s.add_date,is_full,link_man,s.logo, type_name,u.user_name as of_user_id,open_time,shop_name,s.telphone,online,is_today,is_weekly from (select shop_id, address, is_book, add_date, is_full, link_man, logo, type_name, of_user_id, open_time, shop_name, telphone,online,is_today,is_weekly from shop order by add_date desc limit ?,?) s left join user_info u on s.of_user_id = u.user_id",
                             new Object[]
                             { list.getCurNum(), list.getRows() }, Shop.class);
         }

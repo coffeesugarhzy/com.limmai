@@ -387,7 +387,7 @@ public class MyServiceImpl implements MyService
 
     @Override
     public List<CustomInfo> queryCustomInfo(DataGridModel<CustomInfo> list,
-            String keyword)
+            String keyword,int status)
     {
         int total = 0;
         List<CustomInfo> customInfoList = null;
@@ -405,13 +405,21 @@ public class MyServiceImpl implements MyService
                                     list.getCurNum(), list.getRows() },
                             CustomInfo.class);
         }
-        else
-        {
-            total = baseDao
+        else if(status == 8){
+        	total = baseDao
                     .queryForIntPage("select count(custom_id) from custom_info");
             customInfoList = baseDao.query(
                     "select * from custom_info limit ?,?", new Object[]
                     { list.getCurNum(), list.getRows() }, CustomInfo.class);
+        }
+        else
+        {
+            total = baseDao
+                    .queryForIntPage("select count(custom_id) from custom_info where status=?",
+                    		new Object[]{status});
+            customInfoList = baseDao.query(
+                    "select * from custom_info where status=? limit ?,?", new Object[]
+                    { status,list.getCurNum(), list.getRows() }, CustomInfo.class);
         }
         list.setCount(total);
         return customInfoList;
@@ -604,5 +612,16 @@ public class MyServiceImpl implements MyService
     {
         return baseDao.query("select shop_id,shop_name from shop", Shop.class);
     }
+
+	@Override
+	public int deleteUser(String id) {
+		
+		if(id!=null){
+		baseDao.delete(UserInfo.class, id);
+		return 1;
+		}else{
+			return 0;
+		}
+	}
 
 }

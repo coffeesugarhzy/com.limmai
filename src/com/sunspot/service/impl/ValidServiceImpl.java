@@ -144,7 +144,7 @@ public class ValidServiceImpl implements ValidService{
         }
         else
         {
-            querysql += " order by a.addDate limit ?,?";
+            querysql += " order by a.addDate desc limit ?,?";
             queryParam = new Object[]
             { list.getCurNum(), list.getRows() };
         }

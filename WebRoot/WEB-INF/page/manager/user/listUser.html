@@ -76,7 +76,9 @@
 			var id = rowObject['userId'];
 			var ediStr = "<span class='delete'><a style='cursor:pointer' onclick='top.dsIframe(\"编辑帐户\" , \"/manager/user/toUpdate.do?id="
 					+ id + "\" ,600,320)'>编辑</a></span>";
-			return ediStr;
+					var deleteStr = "<span class='delete'><a style='cursor:pointer' onclick='top.deleteById(\"/manager/user/deleteUser.do\" , \""
+						+ id + "\")'>删除</a></span>";
+			return ediStr+ "&nbsp;&nbsp;"+deleteStr;
 		}
 
 		$(function() {

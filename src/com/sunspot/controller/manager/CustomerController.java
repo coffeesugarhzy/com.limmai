@@ -5,16 +5,22 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+
+
 
 import com.sunspot.pojo.CustomInfo;
 import com.sunspot.pojoext.DataGridModel;
 import com.sunspot.service.CustomInfoService;
 import com.sunspot.service.MyService;
+
 
 @Controller
 @Scope("prototype")
@@ -29,16 +35,19 @@ public class CustomerController
     CustomInfoService customInfoService;
 
     @RequestMapping("listCustomer")
-    public void listCustomer()
+    public void listCustomer(String keyword,Integer status,ModelMap modelMap)
     {
+    	modelMap.addAttribute("keyword",
+    			StringUtils.isNotBlank(keyword) ? keyword : "");
+    	modelMap.addAttribute("status",null == status ? 8 : status);
     }
 
     @ResponseBody
     @RequestMapping("queryCustomer")
     public DataGridModel<CustomInfo> queryCustomer(
-            DataGridModel<CustomInfo> list, String keyword)
+            DataGridModel<CustomInfo> list, String keyword,int status)
     {
-        List<CustomInfo> customerList = service.queryCustomInfo(list, keyword);
+        List<CustomInfo> customerList = service.queryCustomInfo(list, keyword,status);
         list.setContent(customerList);
         list.setRecords(customerList.size());
         return list;

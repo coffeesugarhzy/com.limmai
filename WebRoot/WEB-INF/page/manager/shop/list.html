@@ -84,7 +84,7 @@ $(function(){
             {
 url : '/manager/shop/listJson.do',
 datatype : "json",
-colNames : ['','名称', '预订','已满','类型','联系人','电话','是否在线','今日推荐','本周精选','操作' ],
+colNames : ['','名称', '预订','已满','注册时间','类型','联系人','电话','是否在线','今日推荐','本周精选','操作' ],
 colModel : [ 
 {
 	sortable : false,
@@ -110,6 +110,14 @@ align : 'left'
 	name : 'isFull',
 	index : 'isFull',
 	width : 60,
+	align : 'left',
+	hidden : true
+},
+{
+	sortable : false,
+	name : 'addDate',
+	index : 'addDate',
+	width : 100,
 	align : 'left'
 },
 {

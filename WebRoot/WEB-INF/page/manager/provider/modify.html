@@ -67,15 +67,46 @@
 							<tr>
 								<td width="80">商家角色</td>
 								<td><select name="userRole.roleId" style="width: 150px">
-										<option value="">请选择角色</option> <#if Request.beans??> <#list
-										Request.beans as role> <#if role.roleId ==
-										Request.bean.userRole.roleId>
-										<option value="${role.roleId}" selected="selected">
-											${role.roleName}</option> <#else>
-										<option value="${role.roleId}">${role.roleName}</option>
-										</#if> </#list> </#if>
+										<option value="">请选择角色</option> 
+										<#if Request.beans??> 
+										<#if 1 == loginUser.userType>
+											<#list Request.beans as role> 
+												<#if role.roleId == Request.bean.userRole.roleId>
+												<option value="${role.roleId}" selected="selected">${role.roleName}</option> 
+												<#else>
+												<option value="${role.roleId}" hidden="hidden">${role.roleName}</option>
+												</#if> 
+											</#list> 
+										<#else>
+											<#list Request.beans as role> 
+												<#if role.roleId == Request.bean.userRole.roleId>
+												<option value="${role.roleId}" selected="selected">${role.roleName}</option> 
+												<#else>
+												<option value="${role.roleId}" >${role.roleName}</option>
+												</#if> 
+											</#list> 
+										</#if>
+										</#if>
 								</select></td>
 							</tr>
+							<!--bbb  
+							
+							<tr>
+								<td width="80">商家状态</td>
+								<td><select name="userRole.roleId" style="width: 150px">
+										<option value="">请选择状态</option> 
+										<#if Request.beans??> 
+											<#list Request.beans as role> 
+												<#if role.roleId == Request.bean.userRole.roleId>
+												<option value="${role.roleId}" selected="selected">${role.roleName}</option> 
+												<#else>
+												<option value="${role.roleId}" hidden="hidden">${role.roleName}</option>
+												</#if> 
+											</#list> 
+										</#if>
+								</select></td>
+							</tr>
+							<!--  eeee-->
 							<tr>
 								<td width="80">商家详情</td>
 								<td><textarea rows="" cols="" style="width:95%"

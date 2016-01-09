@@ -104,10 +104,13 @@
 							</tr>
 							<tr>
 								<td>店铺类型</td>
-								<td><select id="typeName" name="typeName"> <#if
-										dataTypes??><#list dataTypes as dts>
+								<td><select id="typeName" name="typeName">
+								  <#if dataTypes??>
+								 	<#list dataTypes as dts>
 										<option value="${dts.typeName}">${dts.typeName}</option>
-										</#list></#if>
+										</#list>
+									</#if>
+									
 								</select></td>
 							</tr>
 							
@@ -159,33 +162,36 @@
 									<div id="usernameTip" class="onShow">必须输入数字!</div></td>
 							</tr>
 							</#if>
+							<!--  
 							<tr>
 								<td>餐台设置</td>
-								<td><table id="tab" style="background:#EEF3F7">
-										<tr>
-											<td width="100px">餐桌类型</td>
-											<td width="100px">容纳人数</td>
-											<td width="100px">餐桌数量</td>
-											<td width="50px"><a onclick="addtr()" href="#"><b>增加</b></a></td>
-										</tr>
-										<#if shop?? && shop.tableInfos??><#list shop.tableInfos as
-										tis>
-										<tr>
-											<td><input type='text' class='input-text'
-												name='tableName' id='tableName' maxlength='5'
-												style='width:80px' value="${(tis.tableName)!''}" /></td>
-											<td><input type='text' class='input-text'
-												name='tableVolume' id='tableVolume' maxlength='4'
-												style='width:80px' value="${(tis.tableVolume)!'0'}" /></td>
-											<td><input type='text' class='input-text'
-												name='tableNum' id='tableNum' maxlength='4'
-												style='width:80px' value="${(tis.tableNum)!'0'}" /></td>
-											<td><a href='#' onclick='javascript:delRow(this)'>删除</a>
-											</td>
-										</tr>
-										</#list></#if>
-									</table></td>
-							</tr>
+								<td>
+									<table id="tab" style="background:#EEF3F7">
+											<tr>
+												<td width="100px">餐桌类型</td>
+												<td width="100px">容纳人数</td>
+												<td width="100px">餐桌数量</td>
+												<td width="50px"><a onclick="addtr()" href="#"><b>增加</b></a></td>
+											</tr>
+											<#if shop?? && shop.tableInfos??><#list shop.tableInfos as
+											tis>
+											<tr>
+												<td><input type='text' class='input-text'
+													name='tableName' id='tableName' maxlength='5'
+													style='width:80px' value="${(tis.tableName)!''}" /></td>
+												<td><input type='text' class='input-text'
+													name='tableVolume' id='tableVolume' maxlength='4'
+													style='width:80px' value="${(tis.tableVolume)!'0'}" /></td>
+												<td><input type='text' class='input-text'
+													name='tableNum' id='tableNum' maxlength='4'
+													style='width:80px' value="${(tis.tableNum)!'0'}" /></td>
+												<td><a href='#' onclick='javascript:delRow(this)'>删除</a>
+												</td>
+											</tr>
+											</#list></#if>
+										</table>
+									</td>
+							</tr>-->
 							<tr>
 								<td width="80">区域</td>
 								<td><select id="sheng" name="sheng" onchange="areaSelect(this.value,1)"><option
@@ -308,6 +314,7 @@
 							<td><font color='gray'>未开启</font></td>
 						</tr>
 						</#if>
+						<!--  
 						<tr>
 							<td>餐台信息</td>
 							<td><table style="background:#EEF3F7">
@@ -324,7 +331,7 @@
 									</tr>
 									</#list></#if>
 								</table></td>
-						</tr>
+						</tr>-->
 
 						<tr>
 							<td>经度/纬度</td>

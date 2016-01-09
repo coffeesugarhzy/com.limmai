@@ -360,7 +360,7 @@ public class ProviderController
      */
     @ResponseBody
     @RequestMapping("listJson")
-    public DataGridModel<UserInfo> findRole(DataGridModel<UserInfo> list,
+    public DataGridModel<UserInfo> findRole(HttpServletRequest request,DataGridModel<UserInfo> list,
             String keyword)
     {
 
@@ -369,7 +369,8 @@ public class ProviderController
         // 分页查询角色管理
         List<UserInfo> roles = providerService.queryByPage(list, keyword);
         list.setContent(roles);
-
+        UserInfo loginUser =(UserInfo) request.getSession().getAttribute("loginUser");
+        request.setAttribute("loginUser", loginUser);
         return list;
 
     }

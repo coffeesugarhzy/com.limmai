@@ -311,4 +311,6 @@ public class BaseDaoImpl implements BaseDao
             session.close();
         }
     }
+
+	
 }

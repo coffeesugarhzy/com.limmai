@@ -93,7 +93,7 @@ public interface MyService
 
     //
     public List<CustomInfo> queryCustomInfo(DataGridModel<CustomInfo> list,
-            String keyword);
+            String keyword,int status);
 
     public void add(CustomInfo t);
 
@@ -136,4 +136,6 @@ public interface MyService
             String keyword);
 
     public List<Shop> getShop();
+
+	public int deleteUser(String id);
 }
