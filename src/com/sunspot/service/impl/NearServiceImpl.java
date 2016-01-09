@@ -74,7 +74,8 @@ public class NearServiceImpl implements NearService
             ShopExt.class);
             //剔除被屏蔽的商店
             for(int i=0;i<list.size();i++){
-            	if(getShopStatus(list.get(i)))list.remove(i);
+            	if(getShopStatus(list.get(i)))
+            		list.remove(i);
             }
             list=setMarks(list);
             return list ; 
@@ -190,12 +191,13 @@ public class NearServiceImpl implements NearService
     }
     
     /**
-     * 查询商店是否已被屏蔽或被注销
+     * 查询商店是否已被屏蔽或被注销 
+     * 若已被屏蔽或注销则返回true,否则返回false
      * @param shopExt
      */
     public boolean getShopStatus(ShopExt shopExt){
     	UserInfo userInfo=baseDao.getByHibernate(UserInfo.class,shopExt.getOfUserId());
-    	if(userInfo.getStatus()==0){
+    	if(userInfo.getStatus()==1||userInfo.getStatus()==3){
     		return true;
     	} else {
     		return false;
@@ -204,6 +206,7 @@ public class NearServiceImpl implements NearService
     
     /**
      * 根据商店id查询商店是否已被屏蔽或被注销
+     *  若已被屏蔽或注销则返回true,否则返回false
      * @param shopExt
      * 0正常 1 屏蔽 2 禁言 3 注销
      */

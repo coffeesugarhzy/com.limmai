@@ -16,7 +16,7 @@ public interface UserInfoService {
 	 * @param loginType 登陆类型
 	 * @return 成功则返回用户信息 否则返回 null 
 	 */
-	UserInfo checkUserLogin(String username, String password , String loginType );
+	UserInfo checkUserLogin(String username, String password, String loginType);
 
 	/**
 	 * 获取用户信息

@@ -244,5 +244,12 @@ public interface OrdersService
      * @return
      */
     List<Integer> goodsStatusInOrders(List<OrdersIndexExt> list);
-
+    
+    /**
+     * 分类统计用户的订单数量
+     * @param ofCustomId 用户Id
+     * @param sendStatus 订单状态 ->0：未配送；1：已配送
+     * @return 数量
+     */
+    int count(String ofCustomId,int sendStatus);
 }

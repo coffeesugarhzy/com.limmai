@@ -6,10 +6,23 @@
 <meta name="viewport"
 	content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
 <link rel="stylesheet" href="/dist/css/style.css">
+<link rel="stylesheet" href="/dist/css/jquery.circliful.css">
 <style>
 	.contents {
 		padding: 44px 0 80px 0;
 	}
+	
+	.circliful { 
+    	position: relative;  
+	} 
+
+	.circle-text, .circle-info, .circle-text-half, .circle-info-half { 
+    	width: 100%; 
+    	position: absolute; 
+   	 	text-align: center; 
+		color:white;
+    	display: inline-block; 
+	} 
 </style>
 </head>
 <body class="bg-gray">
@@ -24,16 +37,35 @@
 			<ul class="clearFix">
 				<#if 1 == status>
 				<li class="fl current" data-class="unfilled-order"><a
-					href="/index/orders/ordertakeoutsec.do?status=1">待发货<i></i></a></li>
+					href="/index/orders/ordertakeoutsec.do?status=1">待发货
+					<i id="myStat01" data-dimension="32" data-text="${zero}" 
+						data-width="30" data-fontsize="12" data-percent="0"  
+						data-bgcolor="white" data-fill="red"></i>
+					</a>
+				</li>
 				<#else>
 				<li class="fl" data-class="unfilled-order"><a
-					href="/index/orders/ordertakeoutsec.do?status=1">待发货<i></i></a></li>
+					href="/index/orders/ordertakeoutsec.do?status=1">待发货
+					<i id="myStat001" data-dimension="32" data-text="${zero}" 
+						data-width="30" data-fontsize="12" data-percent="0"  
+						data-bgcolor="white" data-fill="red"></i>
+					</a></li>
 				</#if> <#if 2 == status>
 				<li class="fl current" data-class="take-goods"><a
-					href="/index/orders/ordertakeoutsec.do?status=2">待收货<i></i></a></li>
+					href="/index/orders/ordertakeoutsec.do?status=2">待收货
+					<i id="myStat02" data-dimension="32" data-text="${one}" 
+						data-width="30" data-fontsize="12" data-percent="0"  
+						data-bgcolor="white" data-fill="red"></i>
+					</a>
+				</li>
 				<#else>
 				<li class="fl" data-class="take-goods"><a
-					href="/index/orders/ordertakeoutsec.do?status=2">待收货<i></i></a></li>
+					href="/index/orders/ordertakeoutsec.do?status=2">待收货
+					<i id="myStat002" data-dimension="32" data-text="${one}" 
+						data-width="30" data-fontsize="12" data-percent="0"  
+						data-bgcolor="white" data-fill="red"></i>
+					</a>
+				</li>
 				</#if><#if 3 == status>
 				<li class="fl current" data-class="evaluate"><a
 					href="/index/orders/ordertakeoutsec.do?status=3">评价/晒单<i></i></a></li>
@@ -252,6 +284,7 @@
 	</div>
 </body>
 <script type="text/javascript" src="/dist/js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="/dist/js/jquery.circliful.min.js"></script>
 <script type="text/javascript" src="/dist/js/base.js"></script>
 <script>
 	//重定向到付款页面
@@ -268,5 +301,12 @@
         window.location.href='/index/orders/cancelOrdersec.do?orderType=1&status='+status+'&orderId='+orderId;
       }
    }
+   $( document ).ready(function() { 
+        $('#myStat01').circliful(); 
+        $('#myStat001').circliful(); 
+        $('#myStat02').circliful(); 
+        $('#myStat002').circliful(); 
+    }); 
+</script>
 </script>
 </html>

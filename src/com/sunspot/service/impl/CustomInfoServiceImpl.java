@@ -92,4 +92,17 @@ public class CustomInfoServiceImpl implements CustomInfoService
     		return 0;
     	}
     }
+    
+    /**
+     * 返回客户的状态
+     * @param phone
+     * @param password
+     * @return
+     */
+    public int getStatus(String phone,String password)
+    {
+    	String sql="SELECT * FROM custom_info WHERE telphone=? and login_password=?;";
+    	CustomInfo c=baseDao.queryForObject(sql, new Object[]{phone,password}, CustomInfo.class);
+    	return c.getStatus();
+    }
 }

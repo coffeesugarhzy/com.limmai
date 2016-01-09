@@ -276,7 +276,14 @@
     	$.post("/index/near/customlike.do" , 
     			{goodsId:_shopId,opt:_opt,likeType:0} , 
     			function(data){     
-    				if(data==="2"){alert("请先登陆");} 
+    				if(data==="2"){
+    					//alert("请先登陆");
+   						if(window.confirm("请先登录！")){
+   							window.location.href="/index/index/my.do";
+   						}else{
+   							
+   						}
+    				} 
     				else if(data ==="0"){alert("收藏失败")} 
     				else{
     					$("a#customlike").attr("data-opt",(_opt==0?1:0)); 

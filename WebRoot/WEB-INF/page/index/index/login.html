@@ -63,7 +63,11 @@
 							$('#submitButton').prop('disabled', false);
 							if (data === "loginError") {
 								alert("错误的手机号码或密码");
-							} else { 
+							}
+							else if(data ==="zhuxiao"){
+								alert("您的帐号已被注销！");
+							}
+							else { 
 								location.href = data;
 							}
 						}

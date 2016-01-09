@@ -99,6 +99,6 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-webmvc-portlet-4.1.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-websocket-4.1.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/wsdl4j-1.6.3.jar"/>
-	<classpathentry kind="lib" path="D:/Software/Java/jre1.7/lib/rt.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/rt.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
