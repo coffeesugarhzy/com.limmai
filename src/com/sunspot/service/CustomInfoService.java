@@ -44,5 +44,12 @@ public interface CustomInfoService
 	 * 2015-11-19
 	 */
 	int statusModify(String id,int status);
-
+	
+	 /**
+     * 返回客户的状态
+     * @param phone
+     * @param password
+     * @return
+     */
+    public int getStatus(String phone,String password);
 }

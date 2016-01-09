@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import com.sunspot.common.DateUtil;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sunspot.common.Utils;
 import com.sunspot.dao.BaseDao;
 import com.sunspot.pojo.Cookbook;
-
 import com.sunspot.pojo.CustomInfo;
 import com.sunspot.pojo.Orders;
 import com.sunspot.pojo.OrdersDetail;
@@ -32,7 +32,6 @@ import com.sunspot.pojoext.OrdersDetailExt;
 import com.sunspot.pojoext.OrdersExt;
 import com.sunspot.pojoext.OrdersIndexExt;
 import com.sunspot.service.CommentsService;
-
 import com.sunspot.service.CookbookService;
 import com.sunspot.service.OrdersService;
 
@@ -1196,4 +1195,16 @@ public class OrdersServiceImpl implements OrdersService
 		}
 		return isShels;
 	}
+	
+	/**
+     * 分类统计用户的订单数量
+     * @param ofCustomId 用户Id
+     * @param sendStatus 订单状态 ->0：未配送；1：已配送
+     * @return 数量
+     */
+	public int count(String ofCustomId,int sendStatus){
+		String sql="SELECT * FROM orders WHERE of_custom_id=? and send_status=?";
+		List<Orders> list=baseDao.query(sql, new Object[]{ofCustomId,sendStatus}, Orders.class);
+    	return list.size();
+    }
 }

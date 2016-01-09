@@ -186,6 +186,8 @@ public class MyIndexController
         boolean result = service.customerLogin(phone, password, session);
         if (false == result)
         {
+        	if(customInfoService.getStatus(phone, password)==3)
+        		return "zhuxiao";
             return "loginError";
         }
         else
@@ -435,7 +437,8 @@ public class MyIndexController
         	result.put("msg", "账号或密码不能为空！");
         	result.put("success", "0");
         }
-        userInfo = userInfoService.checkUserLogin(userName.trim(),password.trim(), "1");
+        System.out.println("商店登录！！");
+        userInfo = userInfoService.checkUserLogin(userName.trim(),password.trim(),"1");
         if (userInfo != null)
         {
             // 查询用户角色　

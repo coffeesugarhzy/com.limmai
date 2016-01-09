@@ -80,17 +80,21 @@ public class OrdersIndexController
 
     @RequestMapping("/ordertakeoutsec")
     public void ordertakeoutsec(Integer status, ModelMap modelMap,
-            HttpServletRequest request)
+            HttpServletRequest request,HttpSession session)
     {
         status = (null == status) ? 1 : status;
         modelMap.addAttribute("status", status);
         
+        CustomInfo customInfo=(CustomInfo) session.getAttribute("loginCustomer");
         List<OrdersIndexExt> orders=ordersService.queryTakeoutOrder(status, request);
         modelMap.addAttribute("orders",orders);
         
         modelMap.addAttribute("is_appends", commentsService.queryAppEndByOrderId(orders));
         //匹配订单中商品的状态
         //modelMap.addAttribute("isShels", ordersService.goodsStatusInOrders(orders));
+        modelMap.addAttribute("zero", ordersService.count(customInfo.getCustomId(), 0));//待发货
+        
+        modelMap.addAttribute("one", ordersService.count(customInfo.getCustomId(), 1));//待收货
 
     }
 

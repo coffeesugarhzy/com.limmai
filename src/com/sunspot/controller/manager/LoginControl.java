@@ -179,49 +179,47 @@ public class LoginControl
      * @return LOGIN_PAGE
      */
     @RequestMapping("/login")
-    public String login(String userName, String password, String loginType,
-            HttpServletRequest request, ModelMap modelMap)
-    {
+	public String login(String userName, String password, String loginType,
+			HttpServletRequest request, ModelMap modelMap) {
 
-        UserInfo userInfo = (UserInfo) request.getSession().getAttribute(
-                "loginUser");
+		UserInfo userInfo = (UserInfo) request.getSession().getAttribute(
+				"loginUser");
 
-        if (null != userInfo) { return LOGIN_SUCCESS; }
+		if (null != userInfo) {
+			return LOGIN_SUCCESS;
+		}
+		System.out.println("管理员登录！");
+		// 如果登录用户名或密码为空则直接返回
+		if (StringUtils.isBlank(userName) || StringUtils.isBlank(password)) {
+			modelMap.addAttribute("errorCode", Constants.USER_OR_PASS_NULL);
+			runLog.info("login failed,ERRORCODE:" + Constants.USER_OR_PASS_NULL);
+			return RE_LOGIN_PAGE;
+		}
+		// 验证用户信息
+		userInfo = userInfoService.checkUserLogin(userName.trim(),
+				password.trim(), loginType);
 
-        // 如果登录用户名或密码为空则直接返回
-        if (StringUtils.isBlank(userName) || StringUtils.isBlank(password))
-        {
-            modelMap.addAttribute("errorCode", Constants.USER_OR_PASS_NULL);
-            runLog.info("login failed,ERRORCODE:" + Constants.USER_OR_PASS_NULL);
-            return RE_LOGIN_PAGE;
-        }
-        // 验证用户信息
-        userInfo = userInfoService.checkUserLogin(userName.trim(),
-                password.trim(), loginType);
-        
-        // 登陆成功
-        if (userInfo != null)
-        {
-            // 查询用户角色　
-            UserRole userRole = userRoleService.queryRoleByUserInfo(userInfo);
-            userInfo.setUserRole(userRole);
+		// 登陆成功
+		if (userInfo != null) {
+			// 查询用户角色　
+			UserRole userRole = userRoleService.queryRoleByUserInfo(userInfo);
+			userInfo.setUserRole(userRole);
 
-            // 如果合法将用户信息存入SESSION
-            request.getSession().setAttribute("loginUser", userInfo);
-            runLog.info("login success,userName=" + userName); 
-            //如果用户被注销，则禁止登录
-        	if(userInfo.getStatus()==3)return RE_LOGIN_PAGE;
-        	
-            return LOGIN_SUCCESS; 
-        }
-        else
-        { 
-            // 登陆失败
-            runLog.info("用户登陆失败，用户名或者账号不正确");
-            return RE_LOGIN_PAGE;
-        }
-    }
+			// 如果合法将用户信息存入SESSION
+			request.getSession().setAttribute("loginUser", userInfo);
+			runLog.info("login success,userName=" + userName);
+			// 如果用户被注销，则禁止登录
+			if (userInfo.getStatus() == 3)
+				return RE_LOGIN_PAGE;
 
+			return LOGIN_SUCCESS;
+		} else {
+			// 登陆失败
+			runLog.info("用户登陆失败，用户名或者账号不正确");
+			return RE_LOGIN_PAGE;
+		}
+	}
+    
     /**
      * 退出登录
      * 
@@ -244,5 +242,20 @@ public class LoginControl
     {
         request.getSession().removeAttribute("loginUser");
         return "redirect:/";
+    }
+    
+    /**
+     * 忘记密码
+     * @return
+     */
+    @RequestMapping("/toForgetPwd")
+    public String toForgetPwd()
+    {
+    	return "redirect:/forgetPwd.do";
+    }
+    
+    @RequestMapping("/forgetPwd")
+    public void forgetPwd(ModelMap modelMap){
+    	
     }
 }

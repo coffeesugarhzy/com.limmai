@@ -49,12 +49,12 @@ public class UserInfoServiceImpl implements UserInfoService {
 	 * @author LuoAndong
 	 */
 	@Override
-	public UserInfo checkUserLogin(String username, String password,
-			String loginType) { 
+	public UserInfo checkUserLogin(String username, String password, String loginType
+			) { 
 		try{ 
 		     
-			List<Map<String, Object>> userInfoMap =  baseDao.query("select user_id,login_name,role_id,user_name,user_type,status from user_info where login_name=? and login_password=? and user_type=? ", 
-			        new Object[] { username, MD5.encrypt(password), loginType });
+			List<Map<String, Object>> userInfoMap =  baseDao.query("select user_id,login_name,role_id,user_name,user_type,status from user_info where login_name=? and login_password=? and user_type=?", 
+			        new Object[] { username, MD5.encrypt(password), loginType});
 			if(userInfoMap != null && userInfoMap.size() == 1){
 			     
 			    Map<String,Object> map = userInfoMap.get(0) ; 

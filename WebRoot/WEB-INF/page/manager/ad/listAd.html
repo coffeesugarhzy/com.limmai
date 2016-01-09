@@ -94,7 +94,7 @@
 						url : '/manager/ad/queryAd.do',
 						datatype : "json",
 						colNames : [ 'id', '标题',  '类型', '链接地址',
-								'增加时间', '操作' ],
+								'增加时间','显示顺序','操作' ],
 						colModel : [ {
 							sortable : false,
 							name : 'adId',
@@ -126,6 +126,12 @@
 							width : 80,
 							align : 'left'
 						}, {
+							sortable:false,
+							name:'adOrder',
+							index:'adOrder',
+							width:40,
+							align:'center'
+						},{
 							sortable : false,
 							name : 'op',
 							index : 'op',
