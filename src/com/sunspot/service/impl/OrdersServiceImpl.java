@@ -144,22 +144,22 @@ public class OrdersServiceImpl implements OrdersService
         Object[] queryParam = null;
 
         switch (status)
-        {
+        {//and a.pay_type=0 and a.is_pay=0 ? (a.pay_type=1 or a.is_pay=1) and ?
         case 0:
-            countsql += " and a.status<3 and a.pay_type=0 and a.is_pay=0 and a.send_status=0";
-            querysql += " and a.status<3 and a.pay_type=0 and a.is_pay=0 and a.send_status=0";
+            countsql += " and a.status<3 and a.send_status=0";
+            querysql += " and a.status<3 and a.send_status=0";
             break;
         case 1:
-            countsql += " and a.status<3 and (a.pay_type=1 or a.is_pay=1) and a.send_status=0";
-            querysql += " and a.status<3 and (a.pay_type=1 or a.is_pay=1) and a.send_status=0";
+            countsql += " and a.status<3 and a.send_status=0";
+            querysql += " and a.status<3 and a.send_status=0";
             break;
         case 2:
-            countsql += " and a.status<3 and (a.pay_type=1 or a.is_pay=1) and a.send_status=1";
-            querysql += " and a.status<3 and (a.pay_type=1 or a.is_pay=1) and a.send_status=1";
+            countsql += " and a.status<3 and  a.send_status=1";
+            querysql += " and a.status<3 and  a.send_status=1";
             break;
         case 3:
-            countsql += " and a.status<3 and (a.pay_type=1 or a.is_pay=1) and a.send_status=2";
-            querysql += " and a.status<3 and (a.pay_type=1 or a.is_pay=1) and a.send_status=2";
+            countsql += " and a.status<3 and  a.send_status=2";
+            querysql += " and a.status<3 and  a.send_status=2";
             break;
         case 4:
             countsql += " and a.status>=3";
@@ -193,6 +193,7 @@ public class OrdersServiceImpl implements OrdersService
         List<OrdersExt> ordersExtList = baseDao.query(querysql, queryParam,
                 OrdersExt.class);
         list.setContent(ordersExtList);
+        System.out.println();
     }
 
     /**

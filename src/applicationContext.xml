@@ -13,6 +13,7 @@
 
 	<!-- 扫描所有注解 -->
 	<context:component-scan base-package="com.sunspot" />
+	
 
 	<!-- HikariCP 高性能数据库连接池 -->
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
@@ -20,7 +21,7 @@
 		<property name="jdbcUrl"
 			value="jdbc:mysql://localhost:3306/limmai?useUnicode=true&amp;characterEncoding=utf-8" />
 		<property name="username" value="root" />
-		<property name="password" value="123456" />
+		<property name="password" value="Limmai007" />
 		<!--最大连接超时时间 default：10秒 -->
 		<property name="connectionTimeout" value="10000" />
 		<!--最大空闲超时时间 default：10分钟 -->

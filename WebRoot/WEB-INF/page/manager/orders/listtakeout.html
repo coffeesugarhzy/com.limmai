@@ -110,7 +110,7 @@
                     'status' : status
                 },
                 datatype : "json",
-                colNames : ['','订单号','客户名称','电话','状态','订单金额（元）','订单类型','预定时间','提交时间','操作'],
+                colNames : ['','订单号','客户名称','电话','状态','订单金额（元）','付款方式','订单类型','预定时间','提交时间','操作'],
                 colModel : [ {
                     sortable : false,
                     name : 'orderId',
@@ -140,10 +140,17 @@
                 }, {
                     sortable : false,
                     name : '',
-                    align : 'right',
+                    align : 'left',
                     formatter : moneyFormat
                 }, 
+                
                 {
+                    sortable : false,
+                    name : 'payType',
+                    index : 'payType',
+                    align : 'left',
+                    formatter : payTypeFormat
+                }, {
                     sortable : false,
                     name : 'orderType',
                     index : 'orderType',
@@ -220,7 +227,17 @@
             var orderMoneyVal = rowObject['orderMoney'];
             return orderMoneyVal+"&nbsp;&nbsp;"
         }
-       
+        function payTypeFormat(cellValue, options, rowObject) {
+            var payType = rowObject['payType'];
+            if(payType == 0){
+                return "<font color='green'>微信支付</font>";
+            }
+            
+            if(payType == 1){
+                return "<font color='red'>货到付款</font>";
+            }
+            return "";
+        }
         function orderTypeFormat(cellValue, options, rowObject) {
             var orderType = rowObject['orderType'];
             if(1 == orderType){

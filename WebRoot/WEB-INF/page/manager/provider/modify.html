@@ -89,22 +89,38 @@
 										</#if>
 								</select></td>
 							</tr>
-							<!--bbb  
+							<!--bbb  -->
 							
 							<tr>
 								<td width="80">商家状态</td>
-								<td><select name="userRole.roleId" style="width: 150px">
-										<option value="">请选择状态</option> 
-										<#if Request.beans??> 
-											<#list Request.beans as role> 
-												<#if role.roleId == Request.bean.userRole.roleId>
-												<option value="${role.roleId}" selected="selected">${role.roleName}</option> 
-												<#else>
-												<option value="${role.roleId}" hidden="hidden">${role.roleName}</option>
-												</#if> 
-											</#list> 
+								<td>
+								<select name="status" style="width: 150px" >
+								
+										<#if bean.status??> 
+										<#if bean.status==0> 
+										<option value="0" selected="selected">正常</option>
+										<#else>
+										<option value="0" >正常</option>
 										</#if>
-								</select></td>
+										<#if bean.status==1> 
+										<option value="1" selected="selected">屏蔽</option>
+										<#else>
+										<option value="1" >屏蔽</option>
+										</#if>
+										<#if bean.status==2> 
+										<option value="2" selected="selected">禁言</option>
+										<#else>
+										<option value="2" >禁言</option>
+										</#if>
+										<#if bean.status==3> 
+										<option value="3" selected="selected">注销</option>
+										<#else>
+										<option value="3" >注销</option>
+										</#if>
+										</#if>
+										
+								</select>
+								</td>
 							</tr>
 							<!--  eeee-->
 							<tr>

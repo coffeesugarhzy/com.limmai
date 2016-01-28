@@ -123,7 +123,8 @@ public class ProviderServiceImpl implements ProviderService
             modifyUserInfo.setUpdateDate(Utils.getNowDate()) ; 
             modifyUserInfo.setUserName(t.getUserName()) ; 
             modifyUserInfo.setLoginName(t.getLoginName()) ; 
-            modifyUserInfo.setTelphone(t.getTelphone()) ; 
+            modifyUserInfo.setTelphone(t.getTelphone()) ;
+            modifyUserInfo.setStatus(t.getStatus());
             if(t.getLoginPassword() != null && !t.getLoginPassword().trim().equals(""))
                 modifyUserInfo.setLoginPassword(t.getLoginPassword()) ; 
             modifyUserInfo.setUserRole(t.getUserRole()) ; 

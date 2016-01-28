@@ -9,6 +9,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -441,7 +442,19 @@ public class ProviderController
     	System.out.println("value->"+status);
     	request.setAttribute("resultCode", flag);
     	return "rsp/submitrsp";
-
+    }
+    /**
+     * 删除商家个人信息
+     * @param request
+     * @param model
+     * @param id
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="deleteProviderInfo",method = RequestMethod.POST)
+    public int deleteUser(HttpServletRequest request,Model model,String id){
+    	int result = userInfoService.deleteProviderInfo(id);
+    	return result;
     }
 
 }

@@ -117,5 +117,16 @@ public class UserInfoServiceImpl implements UserInfoService {
 			 return 0;
 	    }
 	}
+/**
+ * 删除商家信息
+ */
+	public int deleteProviderInfo(String id) {
+		if(id!=null){
+			baseDao.delete(UserInfo.class, id);
+			return 1;
+			}else{
+				return 0;
+			}
+	}
 
 }

@@ -31,4 +31,10 @@ public interface UserInfoService {
     * @return
     */
 	public int modifyUserRole(UserInfo userInfo);
+/**
+ * 删除商家信息
+ * @param id
+ * @return
+ */
+int deleteProviderInfo(String id);
 }
